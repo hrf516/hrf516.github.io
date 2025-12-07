@@ -5,11 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Retrieval Case Studies</title>
     
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
+    <!-- React & ReactDOM -->
     <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
     <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
     
+    <!-- Babel for JSX -->
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
     <style>
@@ -17,6 +20,15 @@
         /* 简单的加载动画防止闪烁 */
         .fade-in { animation: fadeIn 0.5s ease-in; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        
+        /* 隐藏滚动条但保留功能 */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
     </style>
 </head>
 <body>
@@ -25,7 +37,7 @@
     <script type="text/babel">
         const { useState } = React;
 
-        // --- 修复：手动定义图标 (移除外部依赖，防止白屏) ---
+        // --- 图标组件定义 (SVG) ---
         const IconBase = ({ size = 24, children, ...props }) => (
             <svg 
                 xmlns="http://www.w3.org/2000/svg" 
@@ -52,6 +64,8 @@
         const Cpu = (props) => <IconBase {...props}><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M9 1v3"/><path d="M15 1v3"/><path d="M9 20v3"/><path d="M15 20v3"/><path d="M20 9h3"/><path d="M20 14h3"/><path d="M1 9h3"/><path d="M1 14h3"/></IconBase>;
         const ChevronLeft = (props) => <IconBase {...props}><path d="m15 18-6-6 6-6"/></IconBase>;
         const ChevronRight = (props) => <IconBase {...props}><path d="m9 18 6-6-6-6"/></IconBase>;
+        const ChevronDown = (props) => <IconBase {...props}><path d="m6 9 6 6 6-6"/></IconBase>;
+        const ChevronUp = (props) => <IconBase {...props}><path d="m18 15-6-6-6 6"/></IconBase>;
         const Layers = (props) => <IconBase {...props}><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></IconBase>;
         const Aperture = (props) => <IconBase {...props}><circle cx="12" cy="12" r="10"/><line x1="14.31" y1="8" x2="20.05" y2="17.94"/><line x1="9.69" y1="8" x2="21.17" y2="8"/><line x1="7.38" y1="12" x2="13.12" y2="2.06"/><line x1="9.69" y1="16" x2="3.95" y2="6.06"/><line x1="14.31" y1="16" x2="2.83" y2="16"/><line x1="16.62" y1="12" x2="10.88" y2="21.94"/></IconBase>;
         const ArrowDown = (props) => <IconBase {...props}><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></IconBase>;
@@ -72,6 +86,7 @@
           isRelevant
         });
 
+        // 包含 Letterboxd, Goodreads, Steam 的完整数据
         const CASES = [
           {
             id: 'Letterboxd',
@@ -256,113 +271,57 @@
             queries: [
               {
                 id: 'q1',
-                type: "Image-to-Image",
-                queryImage: "https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&w=400&q=80",
-                text: "Retrieve similar dense urban residential areas",
-                desc: "密集城区检索：需区分普通夜景与卫星俯视图。",
+                type: "",
+                queryImage: "",
+                text: "",
+                desc: "",
                 results: {
-                  'clip-base': {
+                  'omni': {
                     baseline: [
-                      createResult('cb1', 'Map Graphic', 0.65, false, 'https://images.unsplash.com/photo-1569336415962-a4bd9f69cd83?auto=format&fit=crop&w=400&q=80'),
-                      createResult('cb2', 'City Night', 0.61, false, 'https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?auto=format&fit=crop&w=400&q=80'),
-                      createResult('cb3', 'Street View', 0.59, false, 'https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?auto=format&fit=crop&w=400&q=80'),
-                      createResult('cb4', 'Traffic', 0.55, false, 'https://images.unsplash.com/photo-1519501025264-65ba15a82390?auto=format&fit=crop&w=400&q=80'),
-                      createResult('cb5', 'Building', 0.52, false, 'https://images.unsplash.com/photo-1444723121867-7a241cacace9?auto=format&fit=crop&w=400&q=80')
+                      createResult('cb1', '', 0.65, false, ''),
+                      createResult('cb2', '', 0.61, false, ''),
+                      createResult('cb3', '', 0.59, false, ''),
+                      createResult('cb4', '', 0.55, false, ''),
+                      createResult('cb5', '', 0.52, false, '')
                     ],
                     ours: [
-                      createResult('cbo1', 'Urban Density', 0.88, true, 'https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?auto=format&fit=crop&w=400&q=80'),
-                      createResult('cbo2', 'Aerial View', 0.85, true, 'https://images.unsplash.com/photo-1519501025264-65ba15a82390?auto=format&fit=crop&w=400&q=80'),
-                      createResult('cbo3', 'City Block', 0.82, true, 'https://images.unsplash.com/photo-1444723121867-7a241cacace9?auto=format&fit=crop&w=400&q=80'),
-                      createResult('cbo4', 'Grid', 0.80, true, 'https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&w=400&q=80'),
-                      createResult('cbo5', 'Resi Area', 0.78, true, 'https://images.unsplash.com/photo-1569336415962-a4bd9f69cd83?auto=format&fit=crop&w=400&q=80')
+                      createResult('cbo1', '', 0.88, true, ''),
+                      createResult('cbo2', '', 0.85, true, ''),
+                      createResult('cbo3', '', 0.82, true, ''),
+                      createResult('cbo4', '', 0.80, true, ''),
+                      createResult('cbo5', '', 0.78, true, '')
                     ]
                   },
-                  'clip-large': {
+                  'gme': {
                     baseline: [
-                      createResult('cl1', 'Aerial City', 0.78, true, 'https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?auto=format&fit=crop&w=400&q=80'),
-                      createResult('cl2', 'Skyline', 0.68, false, 'https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?auto=format&fit=crop&w=400&q=80'),
-                      createResult('cl3', 'Night Lights', 0.65, false, 'https://images.unsplash.com/photo-1519501025264-65ba15a82390?auto=format&fit=crop&w=400&q=80'),
-                      createResult('cl4', 'Abstract', 0.60, false, 'https://images.unsplash.com/photo-1569336415962-a4bd9f69cd83?auto=format&fit=crop&w=400&q=80'),
-                      createResult('cl5', 'Roads', 0.58, false, 'https://images.unsplash.com/photo-1444723121867-7a241cacace9?auto=format&fit=crop&w=400&q=80')
+                      createResult('cl1', '', 0.78, true, ''),
+                      createResult('cl2', '', 0.68, false, ''),
+                      createResult('cl3', '', 0.65, false, ''),
+                      createResult('cl4', '', 0.60, false, ''),
+                      createResult('cl5', '', 0.58, false, '')
                     ],
                     ours: [
-                      createResult('clo1', 'Dense Residential', 0.92, true, 'https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?auto=format&fit=crop&w=400&q=80'),
-                      createResult('clo2', 'Structural Match', 0.88, true, 'https://images.unsplash.com/photo-1519501025264-65ba15a82390?auto=format&fit=crop&w=400&q=80'),
-                      createResult('clo3', 'Zoning Match', 0.85, true, 'https://images.unsplash.com/photo-1444723121867-7a241cacace9?auto=format&fit=crop&w=400&q=80'),
-                      createResult('clo4', 'Housing', 0.84, true, 'https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&w=400&q=80'),
-                      createResult('clo5', 'Grid View', 0.81, true, 'https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?auto=format&fit=crop&w=400&q=80')
+                      createResult('clo1', '', 0.92, true, ''),
+                      createResult('clo2', '', 0.88, true, ''),
+                      createResult('clo3', '', 0.85, true, ''),
+                      createResult('clo4', '', 0.84, true, ''),
+                      createResult('clo5', '', 0.81, true, '')
                     ]
                   },
-                  'blip': {
+                  'bge': {
                     baseline: [
-                      createResult('bp1', 'Satellite View', 0.80, true, 'https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?auto=format&fit=crop&w=400&q=80'),
-                      createResult('bp2', 'Urban Grid', 0.72, true, 'https://images.unsplash.com/photo-1444723121867-7a241cacace9?auto=format&fit=crop&w=400&q=80'),
-                      createResult('bp3', 'Google Maps', 0.60, false, 'https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&w=400&q=80'),
-                      createResult('bp4', 'Road Map', 0.58, false, 'https://images.unsplash.com/photo-1569336415962-a4bd9f69cd83?auto=format&fit=crop&w=400&q=80'),
-                      createResult('bp5', 'City', 0.55, false, 'https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?auto=format&fit=crop&w=400&q=80')
+                      createResult('bp1', '', 0.80, true, ''),
+                      createResult('bp2', '', 0.72, true, ''),
+                      createResult('bp3', '', 0.60, false, ''),
+                      createResult('bp4', '', 0.58, false, ''),
+                      createResult('bp5', '', 0.55, false, '')
                     ],
                     ours: [
-                      createResult('bpo1', 'High Res Sat', 0.95, true, 'https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?auto=format&fit=crop&w=400&q=80'),
-                      createResult('bpo2', 'Urban Layout', 0.92, true, 'https://images.unsplash.com/photo-1519501025264-65ba15a82390?auto=format&fit=crop&w=400&q=80'),
-                      createResult('bpo3', 'Housing Grid', 0.89, true, 'https://images.unsplash.com/photo-1444723121867-7a241cacace9?auto=format&fit=crop&w=400&q=80'),
-                      createResult('bpo4', 'Densification', 0.87, true, 'https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&w=400&q=80'),
-                      createResult('bpo5', 'Pattern', 0.86, true, 'https://images.unsplash.com/photo-1444723121867-7a241cacace9?auto=format&fit=crop&w=400&q=80')
-                    ]
-                  }
-                }
-              },
-               {
-                id: 'q2',
-                type: "Text-to-Image",
-                text: "Coastal line with mangrove forests",
-                desc: "海岸线植被检索：需区分普通海滩与红树林特征。",
-                results: {
-                  'clip-base': {
-                     baseline: [
-                      createResult('cb1', 'Beach', 0.60, false, 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=400&q=80'),
-                      createResult('cb2', 'Blue Ocean', 0.55, false, 'https://images.unsplash.com/photo-1505118380757-91f5f5632de0?auto=format&fit=crop&w=400&q=80'),
-                      createResult('cb3', 'Vacation', 0.50, false, 'https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&w=400&q=80'),
-                      createResult('cb4', 'Sky', 0.48, false, 'https://images.unsplash.com/photo-1520939819650-3e2d539cedca?auto=format&fit=crop&w=400&q=80'),
-                      createResult('cb5', 'Sand', 0.45, false, 'https://images.unsplash.com/photo-1471922694854-ff1b63b20054?auto=format&fit=crop&w=400&q=80')
-                    ],
-                    ours: [
-                      createResult('cbo1', 'Green Coast', 0.87, true, 'https://images.unsplash.com/photo-1520939819650-3e2d539cedca?auto=format&fit=crop&w=400&q=80'),
-                      createResult('cbo2', 'Vegetation', 0.82, true, 'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=400&q=80'),
-                      createResult('cbo3', 'Marsh', 0.80, true, 'https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?auto=format&fit=crop&w=400&q=80'),
-                      createResult('cbo4', 'Mangrove', 0.79, true, 'https://images.unsplash.com/photo-1448375240586-df4da7bc436e?auto=format&fit=crop&w=400&q=80'),
-                      createResult('cbo5', 'Wetlands', 0.76, true, 'https://images.unsplash.com/photo-1559128010-7c1ad6e1b6a5?auto=format&fit=crop&w=400&q=80')
-                    ]
-                  },
-                  'clip-large': {
-                     baseline: [
-                      createResult('cl1', 'Coast Aerial', 0.72, true, 'https://images.unsplash.com/photo-1520939819650-3e2d539cedca?auto=format&fit=crop&w=400&q=80'),
-                      createResult('cl2', 'Palm Trees', 0.65, false, 'https://images.unsplash.com/photo-1471922694854-ff1b63b20054?auto=format&fit=crop&w=400&q=80'),
-                      createResult('cl3', 'Island', 0.62, false, 'https://images.unsplash.com/photo-1559128010-7c1ad6e1b6a5?auto=format&fit=crop&w=400&q=80'),
-                      createResult('cl4', 'Sea', 0.60, false, 'https://images.unsplash.com/photo-1505118380757-91f5f5632de0?auto=format&fit=crop&w=400&q=80'),
-                      createResult('cl5', 'Resort', 0.58, false, 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=400&q=80')
-                    ],
-                    ours: [
-                      createResult('clo1', 'Mangrove Pattern', 0.93, true, 'https://images.unsplash.com/photo-1520939819650-3e2d539cedca?auto=format&fit=crop&w=400&q=80'),
-                      createResult('clo2', 'Vegetation Index', 0.89, true, 'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=400&q=80'),
-                      createResult('clo3', 'Estuary', 0.86, true, 'https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?auto=format&fit=crop&w=400&q=80'),
-                      createResult('clo4', 'Swamp', 0.84, true, 'https://images.unsplash.com/photo-1448375240586-df4da7bc436e?auto=format&fit=crop&w=400&q=80'),
-                      createResult('clo5', 'Delta', 0.82, true, 'https://images.unsplash.com/photo-1559128010-7c1ad6e1b6a5?auto=format&fit=crop&w=400&q=80')
-                    ]
-                  },
-                  'blip': {
-                    baseline: [
-                      createResult('bp1', 'Swampy Coast', 0.78, true, 'https://images.unsplash.com/photo-1520939819650-3e2d539cedca?auto=format&fit=crop&w=400&q=80'),
-                      createResult('bp2', 'Forest', 0.65, false, 'https://images.unsplash.com/photo-1448375240586-df4da7bc436e?auto=format&fit=crop&w=400&q=80'),
-                      createResult('bp3', 'Lake', 0.60, false, 'https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?auto=format&fit=crop&w=400&q=80'),
-                      createResult('bp4', 'Trees', 0.58, false, 'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=400&q=80'),
-                      createResult('bp5', 'River', 0.55, false, 'https://images.unsplash.com/photo-1505118380757-91f5f5632de0?auto=format&fit=crop&w=400&q=80')
-                    ],
-                    ours: [
-                      createResult('bpo1', 'Mangrove Swamp', 0.96, true, 'https://images.unsplash.com/photo-1520939819650-3e2d539cedca?auto=format&fit=crop&w=400&q=80'),
-                      createResult('bpo2', 'Wetland', 0.92, true, 'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=400&q=80'),
-                      createResult('bpo3', 'River Delta', 0.90, true, 'https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?auto=format&fit=crop&w=400&q=80'),
-                      createResult('bpo4', 'Ecosystem', 0.88, true, 'https://images.unsplash.com/photo-1448375240586-df4da7bc436e?auto=format&fit=crop&w=400&q=80'),
-                      createResult('bpo5', 'Biodiversity', 0.86, true, 'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=400&q=80')
+                      createResult('bpo1', '', 0.95, true, ''),
+                      createResult('bpo2', '', 0.92, true, ''),
+                      createResult('bpo3', '', 0.89, true, ''),
+                      createResult('bpo4', '', 0.87, true, ''),
+                      createResult('bpo5', '', 0.86, true, '')
                     ]
                   }
                 }
@@ -434,7 +393,7 @@
               {
                 id: 'q2',
                 type: "Text-to-Image",
-                text: "LAND, LOOT, SURVIVE! Play PUBG: BATTLEGROUNDS for free. Land on strategic locations, loot weapons and supplies, and survive to become the last team standing across various, diverse Battlegrounds. Squad up and join the Battlegrounds for the original Battle Royale experience that only PUBG: BATTLEGROUNDS can offer. This content download will also provide access to the BATTLEGROUNDS Test Server, which requires a separate download to play.  Optional in-game purchases available.",
+                text: "LAND, LOOT, SURVIVE! Play PUBG: BATTLEGROUNDS for free. Land on strategic locations, loot weapons and supplies, and survive to become the last team standing across various, diverse Battlegrounds. Squad up and join the Battlegrounds for the original Battle Royale experience that only PUBG: BATTLEGROUNDS can offer. This content download will also provide access to the BATTLEGROUNDS Test Server, which requires a separate download to play.  Optional in-game purchases available.",
                 desc: "Game:PUBG: BATTLEGROUNDS",
                 results: {
                   'omni': {
@@ -513,7 +472,7 @@
                     baseline: [
                       createResult('cl1', 'Game:It Takes Two Friend\'s Pass', 0.685, false, './cases/Steam/case3/gme/base/2995920.jpg'),
                       createResult('cl2', 'Game:It Takes Two', 0.684, true, './cases/Steam/case3/gme/base/1426210.jpg'),
-                      createResult('cl3', 'Game:AK-xolotl: Together', 0.526, false, './cases/Steam/case3/gme/base/1479140jpg'),
+                      createResult('cl3', 'Game:AK-xolotl: Together', 0.526, false, './cases/Steam/case3/gme/base/1479140.jpg'), 
                       createResult('cl4', 'Game:Let\'s Cook Together 2', 0.512, false, './cases/Steam/case3/gme/base/1637400.jpg'),
                       createResult('cl5', 'Game:An Odd Tale', 0.511, false, './cases/Steam/case3/gme/base/1651850.jpg')
                     ],
@@ -548,6 +507,34 @@
         ];
 
         // --- COMPONENTS ---
+
+        const ExpandableText = ({ text }) => {
+          const [isExpanded, setIsExpanded] = useState(false);
+          // 简单的判断：如果文字超过200个字符，就认为它是长文本
+          const isLongText = text.length > 200;
+
+          if (!isLongText) {
+            return <h3 className="text-lg font-medium text-slate-900 leading-tight">{text}</h3>;
+          }
+
+          return (
+            <div className="flex flex-col items-start">
+              <h3 className={`text-lg font-medium text-slate-900 leading-tight transition-all duration-300 ${isExpanded ? '' : 'line-clamp-5'}`}>
+                {text}
+              </h3>
+              <button 
+                onClick={() => setIsExpanded(!isExpanded)}
+                className="mt-2 text-xs font-bold text-indigo-600 hover:text-indigo-800 flex items-center gap-1 focus:outline-none"
+              >
+                {isExpanded ? (
+                  <>收起 (Collapse) <ChevronUp size={14}/></>
+                ) : (
+                  <>展开 (Read More) <ChevronDown size={14}/></>
+                )}
+              </button>
+            </div>
+          );
+        };
 
         const ScoreBar = ({ score, isRelevant }) => {
           const percentage = Math.round(score * 100);
@@ -587,21 +574,23 @@
           return (
             <div className="group relative bg-white p-2.5 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col animate-in fade-in zoom-in duration-500 mt-2">
               
+              {/* 排名徽章 */}
               <div className={`absolute -top-3 -left-3 w-8 h-8 flex items-center justify-center rounded-full shadow-md z-20 font-extrabold text-sm border-2 ${badgeStyle}`}>
                 {rank}
               </div>
 
+              {/* 对/错图标：增加 z-index (z-30) 确保在最上层，加强背景和阴影以防被遮挡 */}
               {item.isRelevant ? (
-                <div className="absolute top-2 right-2 text-emerald-600 bg-white/95 rounded-full p-0.5 shadow-sm z-10 border border-emerald-100">
-                  <CheckCircle size={14} />
+                <div className="absolute top-2 right-2 text-emerald-600 bg-white border-2 border-emerald-100 rounded-full p-1 shadow-md z-30" title="Relevant">
+                  <CheckCircle size={16} strokeWidth={3} />
                 </div>
               ) : (
-                <div className="absolute top-2 right-2 text-rose-500 bg-white/95 rounded-full p-0.5 shadow-sm z-10 border border-rose-100">
-                  <XCircle size={14} />
+                <div className="absolute top-2 right-2 text-rose-500 bg-white border-2 border-rose-100 rounded-full p-1 shadow-md z-30" title="Irrelevant">
+                  <XCircle size={16} strokeWidth={3} />
                 </div>
               )}
               
-              <div className="aspect-square overflow-hidden rounded-lg bg-slate-50 mb-2.5 relative">
+              <div className="aspect-square overflow-hidden rounded-lg bg-slate-50 mb-2.5 relative z-0">
                  <div className="absolute inset-0 flex items-center justify-center text-slate-300 bg-slate-100 z-0">
                     <Search size={24} opacity={0.2} />
                  </div>
@@ -610,6 +599,10 @@
                   alt={item.label} 
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 relative z-10"
                   loading="lazy"
+                  onError={(e) => {
+                      e.target.onerror = null; 
+                      e.target.parentNode.innerHTML = `<div class="w-full h-full flex flex-col items-center justify-center bg-slate-100 text-slate-400 text-xs p-2 text-center"><span class="mb-1">Image not found</span><span class="break-all text-[8px]">${item.src}</span></div>`;
+                  }}
                 />
               </div>
               
@@ -663,7 +656,7 @@
                       <Database size={18} />
                     </div>
                     <div>
-                      <h1 className="text-lg font-bold tracking-tight text-slate-900">Model Comparison Dashboard</h1>
+                      <h1 className="text-lg font-bold tracking-tight text-slate-900">MultiModal Domain Adapt</h1>
                       <p className="text-[10px] text-slate-500 font-medium uppercase tracking-wider">Retrieval Case Studies</p> 
                     </div>
                   </div>
@@ -688,7 +681,7 @@
                   </div>
                   
                   {/* Domain Selector Tabs */}
-                  <div className="flex bg-white p-1 rounded-xl border border-slate-200 shadow-sm overflow-x-auto">
+                  <div className="flex bg-white p-1 rounded-xl border border-slate-200 shadow-sm overflow-x-auto no-scrollbar">
                     {CASES.map((c, idx) => {
                       const Icon = c.icon;
                       const isActive = activeCaseIdx === idx;
@@ -742,9 +735,10 @@
                               {activeQuery.queryImage && (
                                  <img src={activeQuery.queryImage} alt="Query" className="w-16 h-16 rounded-lg object-cover border border-slate-200 shadow-sm" />
                               )}
-                              <div>
-                                <h3 className="text-lg font-medium text-slate-900 leading-tight">"{activeQuery.text}"</h3>
-                                <p className="text-sm text-slate-500 mt-1">{activeQuery.desc}</p>
+                              <div className="w-full">
+                                {/* 使用新的 ExpandableText 组件 */}
+                                <ExpandableText text={activeQuery.text} />
+                                <p className="text-sm text-slate-500 mt-2 border-l-2 border-slate-200 pl-2">{activeQuery.desc}</p>
                               </div>
                             </div>
                          </div>
@@ -831,9 +825,9 @@
                              <ResultCard key={item.id} item={item} rank={i + 1} />
                            ))}
                            {currentResults.baseline.length === 0 && (
-                             <div className="col-span-full text-center py-12 text-slate-400">
-                                No baseline data available.
-                             </div>
+                              <div className="col-span-full text-center py-12 text-slate-400">
+                                 No baseline data available.
+                              </div>
                            )}
                          </div>
                        </div>
@@ -848,7 +842,7 @@
 
                     {/* Bottom Row: Fine-tuned Model (Ours) */}
                     <div className="flex flex-col animate-in slide-in-from-bottom-4 duration-500">
-                      <div className="bg-indigo-600 border border-indigo-600 border-b-0 rounded-t-xl p-4 flex items-center justify-between text-white">
+                       <div className="bg-indigo-600 border border-indigo-600 border-b-0 rounded-t-xl p-4 flex items-center justify-between text-white">
                           <div className="flex items-center gap-2">
                             <div className="p-1.5 bg-white/20 text-white rounded-md backdrop-blur-sm">
                               <Aperture size={16} />
@@ -882,6 +876,7 @@
                     </div>
 
                   </div>
+
                 </div>
               </main>
             </div>
