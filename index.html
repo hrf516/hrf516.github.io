@@ -59,9 +59,9 @@
         // --- 数据配置 ---
         
         const BASELINE_MODELS = [
-          { id: 'clip-base', name: 'CLIP ViT-B/32', description: 'Standard Zero-shot' },
-          { id: 'clip-large', name: 'CLIP ViT-L/14', description: 'Large Scale Pre-train' },
-          { id: 'blip', name: 'BLIP-2', description: 'VLP Framework' }
+          { id: 'omni', name: 'Qwen2.5-Omni-Embed-v0.1', description: '' },
+          { id: 'gme', name: 'gme-Qwen2-7b-instruct', description: '' },
+          { id: 'bge', name: 'BGE-MLLM-S2', description: '' }
         ];
 
         const createResult = (id, label, score, isRelevant, imageSrc) => ({
@@ -74,63 +74,63 @@
 
         const CASES = [
           {
-            id: 'medical',
-            domain: "Medical Imaging",
+            id: 'Letterboxd',
+            domain: "Letterboxd",
             icon: Zap,
             queries: [
               {
                 id: 'q1',
                 type: "Text-to-Image",
-                text: "Pneumonia consolidation in the upper right lobe",
-                desc: "针对肺炎病灶的精细化检索测试。",
+                text: "Truman Burbank is the star of The Truman Show, a 24-hour-a-day reality TV show that broadcasts every aspect of his life without his knowledge. His entire life has been an unending soap opera for consumption by the rest of the world. And everyone he knows, including his wife and his best friend is really an actor, paid to be part of his life.",
+                desc: "Movie:The Truman Show",
                 queryImage: "", 
                 results: {
-                  'clip-base': {
+                  'omni': {
                     baseline: [
-                      createResult('cb1', 'General Lung', 0.62, false, 'https://images.unsplash.com/photo-1530497610245-94d3c16cda28?auto=format&fit=crop&w=400&q=80'),
-                      createResult('cb2', 'Lab Coat', 0.55, false, 'https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=400&q=80'),
-                      createResult('cb3', 'X-Ray', 0.51, true, 'https://images.unsplash.com/photo-1584036561566-b938f493336c?auto=format&fit=crop&w=400&q=80'),
-                      createResult('cb4', 'CT Scan', 0.49, false, 'https://images.unsplash.com/photo-1559757137-a5e2843a68e8?auto=format&fit=crop&w=400&q=80'),
-                      createResult('cb5', 'Hospital', 0.45, false, 'https://images.unsplash.com/photo-1519494056809-a292fad67707?auto=format&fit=crop&w=400&q=80')
+                      createResult('cb1', 'Movie:Truman', 0.482, false, './cases/Letterboxd/case 1/omni/base/1244446(1).jpg'),
+                      createResult('cb2', 'Movie:Truman', 0.467, false, './cases/Letterboxd/case 1/omni/base/1056636(2).jpg'),
+                      createResult('cb3', 'Movie:With Love from Truman', 0.443, false, './cases/Letterboxd/case 1/omni/base/1079889(3).jpg'),
+                      createResult('cb4', 'Movie:Aseveljeyden sankarit', 0.426, false, './cases/Letterboxd/case 1/omni/base/1751952(4).jpg'),
+                      createResult('cb5', 'Movie:A Film by Tuğra Kaftancıoğlu', 0.421, false, './cases/Letterboxd/case 1/omni/base/1164075(5).jpg')
                     ],
                     ours: [
-                      createResult('cbo1', 'Pathology Match', 0.88, true, 'https://images.unsplash.com/photo-1584036561566-b938f493336c?auto=format&fit=crop&w=400&q=80'),
-                      createResult('cbo2', 'Right Lobe Focus', 0.85, true, 'https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&w=400&q=80'),
-                      createResult('cbo3', 'Consolidation', 0.82, true, 'https://images.unsplash.com/photo-1516549655169-df83a092fc72?auto=format&fit=crop&w=400&q=80'),
-                      createResult('cbo4', 'Lung Detail', 0.80, true, 'https://images.unsplash.com/photo-1530497610245-94d3c16cda28?auto=format&fit=crop&w=400&q=80'),
-                      createResult('cbo5', 'Related Case', 0.78, true, 'https://images.unsplash.com/photo-1559757137-a5e2843a68e8?auto=format&fit=crop&w=400&q=80')
+                      createResult('cbo1', 'Movie:The Truman Show', 0.534, true, './cases/Letterboxd/case 1/omni/ft/1000022(1).jpg'),
+                      createResult('cbo2', 'Movie:Simulated Reality', 0.510, false, './cases/Letterboxd/case 1/omni/ft/1459464(2).jpg'),
+                      createResult('cbo3', 'Movie:The Simulation Hypothesis', 0.489, false, './cases/Letterboxd/case 1/omni/ft/1218815(3).jpg'),
+                      createResult('cbo4', 'Movie:Truman Syndrome', 0.478, false, './cases/Letterboxd/case 1/omni/ft/1494655(4).jpg'),
+                      createResult('cbo5', 'Movie:How\'s It Going to End - The Making of \'The Truman Show\'', 0.450, false, './cases/Letterboxd/case 1/omni/ft/1156657(5).jpg')
                     ]
                   },
-                  'clip-large': {
+                  'gme': {
                     baseline: [
-                      createResult('cl1', 'X-Ray Generic', 0.71, true, 'https://images.unsplash.com/photo-1584036561566-b938f493336c?auto=format&fit=crop&w=400&q=80'),
-                      createResult('cl2', 'Chest Scan', 0.65, true, 'https://images.unsplash.com/photo-1559757137-a5e2843a68e8?auto=format&fit=crop&w=400&q=80'),
-                      createResult('cl3', 'Hospital Bed', 0.58, false, 'https://images.unsplash.com/photo-1519494056809-a292fad67707?auto=format&fit=crop&w=400&q=80'),
-                      createResult('cl4', 'Doctor', 0.55, false, 'https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=400&q=80'),
-                      createResult('cl5', 'Medical', 0.52, false, 'https://images.unsplash.com/photo-1581594693702-fbdc51b2763b?auto=format&fit=crop&w=400&q=80')
+                      createResult('cl1', 'Movie:The Truman Show', 0.463, true, './cases/Letterboxd/case 1/gme/base/1000022(1)46.3.jpg'),
+                      createResult('cl2', 'Movie:How\'s It Going to End - The Making of \'The Truman Show\'', 0.408, false, './cases/Letterboxd/case 1/gme/base/1156657(2)40.8.jpg'),
+                      createResult('cl3', 'Movie:Reality Show', 0.405, false, './cases/Letterboxd/case 1/gme/base/1195436(3)40.5.jpg'),
+                      createResult('cl4', 'Movie:Reality Star', 0.395, false, './cases/Letterboxd/case 1/gme/base/1632419(4)39.5.jpg'),
+                      createResult('cl5', 'Movie:Reality', 0.369, false, './cases/Letterboxd/case 1/gme/base/1015771(5)36.9.jpg')
                     ],
                     ours: [
-                      createResult('clo1', 'Pathology Match', 0.94, true, 'https://images.unsplash.com/photo-1584036561566-b938f493336c?auto=format&fit=crop&w=400&q=80'),
-                      createResult('clo2', 'Right Lobe Focus', 0.91, true, 'https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&w=400&q=80'),
-                      createResult('clo3', 'Precise Region', 0.89, true, 'https://images.unsplash.com/photo-1516549655169-df83a092fc72?auto=format&fit=crop&w=400&q=80'),
-                      createResult('clo4', 'High Conf', 0.87, true, 'https://images.unsplash.com/photo-1530497610245-94d3c16cda28?auto=format&fit=crop&w=400&q=80'),
-                      createResult('clo5', 'Structure', 0.85, true, 'https://images.unsplash.com/photo-1559757137-a5e2843a68e8?auto=format&fit=crop&w=400&q=80')
+                      createResult('clo1', 'Movie:The Truman Show', 0.553, true, './cases/Letterboxd/case 1/gme/ft/1000022(1)55.3.jpg'),
+                      createResult('clo2', 'Movie:How\'s It Going to End - The Making of \'The Truman Show\'', 0.496, true, './cases/Letterboxd/case 1/gme/ft/1156657(2)49.6.jpg'),
+                      createResult('clo3', 'Movie:Truman', 0.363, true, './cases/Letterboxd/case 1/gme/ft/1056636(3)36.3.jpg'),
+                      createResult('clo4', 'Movie:Truman', 0.359, true, './cases/Letterboxd/case 1/gme/ft/1244446(4)35.9.jpg'),
+                      createResult('clo5', 'Movie:Truman Syndrome', 0.342, true, './cases/Letterboxd/case 1/gme/ft/1494655(5)34.2.jpg')
                     ]
                   },
-                  'blip': {
+                  'bge': {
                     baseline: [
-                      createResult('bp1', 'X-Ray Clear', 0.75, true, 'https://images.unsplash.com/photo-1584036561566-b938f493336c?auto=format&fit=crop&w=400&q=80'),
-                      createResult('bp2', 'Doctor', 0.60, false, 'https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=400&q=80'),
-                      createResult('bp3', 'Medical Tool', 0.55, false, 'https://images.unsplash.com/photo-1581594693702-fbdc51b2763b?auto=format&fit=crop&w=400&q=80'),
-                      createResult('bp4', 'Generic', 0.52, false, 'https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=400&q=80'),
-                      createResult('bp5', 'Scan', 0.48, true, 'https://images.unsplash.com/photo-1559757137-a5e2843a68e8?auto=format&fit=crop&w=400&q=80')
+                      createResult('bp1', 'Movie:The Truman Show', 0.383, true, './cases/Letterboxd/case 1/bge/base/1000022(1)38.3.jpg'),
+                      createResult('bp2', 'Movie:Brave New World', 0.336, false, './cases/Letterboxd/case 1/bge/base/1044990(2)33.6.jpg'),
+                      createResult('bp3', 'Movie:Role of a Lifetime', 0.334, false, './cases/Letterboxd/case 1/bge/base/1316279(3)33.4.jpg'),
+                      createResult('bp4', 'Movie:What Planet Are You From?', 0.333, false, './cases/Letterboxd/case 1/bge/base/1028458(4)33.3.jpg'),
+                      createResult('bp5', 'Movie:Chasing Christmas', 0.332, false, './cases/Letterboxd/case 1/bge/base/1092406(5)33.2.jpg')
                     ],
                     ours: [
-                      createResult('bpo1', 'Structural Match', 0.96, true, 'https://images.unsplash.com/photo-1584036561566-b938f493336c?auto=format&fit=crop&w=400&q=80'),
-                      createResult('bpo2', 'Lesion Detection', 0.93, true, 'https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&w=400&q=80'),
-                      createResult('bpo3', 'Medical Context', 0.90, true, 'https://images.unsplash.com/photo-1516549655169-df83a092fc72?auto=format&fit=crop&w=400&q=80'),
-                      createResult('bpo4', 'Right Lobe', 0.88, true, 'https://images.unsplash.com/photo-1530497610245-94d3c16cda28?auto=format&fit=crop&w=400&q=80'),
-                      createResult('bpo5', 'Diagnosis', 0.86, true, 'https://images.unsplash.com/photo-1559757137-a5e2843a68e8?auto=format&fit=crop&w=400&q=80')
+                      createResult('bpo1', 'Movie:The Truman Show', 0.426, true, './cases/Letterboxd/case 1/bge/ft/1000022(1)42.6.jpg'),
+                      createResult('bpo2', 'Movie:Truman', 0.357, false, './cases/Letterboxd/case 1/bge/ft/1244446(2)35.7.jpg'),
+                      createResult('bpo3', 'Movie:Trumbo', 0.253, false, './cases/Letterboxd/case 1/bge/ft/1036646(3)25.3.jpg'),
+                      createResult('bpo4', 'Movie:Trumbo', 0.241, false, './cases/Letterboxd/case 1/bge/ft/1004137(4)24.1.jpg'),
+                      createResult('bpo5', 'Movie:Truman', 0.241, false, './cases/Letterboxd/case 1/bge/ft/1056636(5)24.1.jpg')
                     ]
                   }
                 }
@@ -138,55 +138,111 @@
               {
                 id: 'q2',
                 type: "Text-to-Image",
-                text: "Fracture of the distal radius bone",
-                desc: "测试模型对骨骼特定部位骨折的理解能力。",
+                text: "After the devastating events of Avengers: Infinity War, the universe is in ruins due to the efforts of the Mad Titan, Thanos. With the help of remaining allies, the Avengers must assemble once more in order to undo Thanos' actions and restore order to the universe once and for all, no matter what consequences may be in store.",
+                desc: "Movie:Avengers: Endgame",
                 results: {
-                  'clip-base': {
+                  'omni': {
                     baseline: [
-                      createResult('cb1', 'Hand Shape', 0.58, false, 'https://images.unsplash.com/photo-1613918108466-392113e1b963?auto=format&fit=crop&w=400&q=80'),
-                      createResult('cb2', 'Arm', 0.52, false, 'https://images.unsplash.com/photo-1527101898812-c54555f1c456?auto=format&fit=crop&w=400&q=80'),
-                      createResult('cb3', 'Skeleton Model', 0.48, false, 'https://images.unsplash.com/photo-1515455183297-e03f06744910?auto=format&fit=crop&w=400&q=80'),
-                      createResult('cb4', 'Drawing', 0.45, false, 'https://images.unsplash.com/photo-1589182373726-e4f658ab50f0?auto=format&fit=crop&w=400&q=80'),
-                      createResult('cb5', 'Generic', 0.41, false, 'https://images.unsplash.com/photo-1530497610245-94d3c16cda28?auto=format&fit=crop&w=400&q=80')
+                      createResult('cb1', 'Movie:Pets', 0.437, false, './cases/Letterboxd/case 2/omni/base/1254844(1)43.7.jpg'),
+                      createResult('cb2', 'Movie:BET Awards', 0.435, false, './cases/Letterboxd/case 2/omni/base/1567340(2)43.5.jpg'),
+                      createResult('cb3', 'Movie:Guardians of the Galaxy', 0.427, false, './cases/Letterboxd/case 2/omni/base/1000062(3)42.7.jpg'),
+                      createResult('cb4', 'Movie:Avengers: Infinity War', 0.421, false, './cases/Letterboxd/case 2/omni/base/1000040(4)42.1.jpg'),
+                      createResult('cb5', 'Movie:Avengers: Endgame', 0.419, true, './cases/Letterboxd/case 2/omni/base/1000043(5)41.9.jpg')
                     ],
                     ours: [
-                      createResult('cbo1', 'Wrist Bone', 0.85, true, 'https://images.unsplash.com/photo-1552196563-55cd4e45efb3?auto=format&fit=crop&w=400&q=80'),
-                      createResult('cbo2', 'Fracture', 0.81, true, 'https://images.unsplash.com/photo-1584036561566-b938f493336c?auto=format&fit=crop&w=400&q=80'),
-                      createResult('cbo3', 'X-Ray Hand', 0.79, true, 'https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&w=400&q=80'),
-                      createResult('cbo4', 'Radius', 0.77, true, 'https://images.unsplash.com/photo-1589182373726-e4f658ab50f0?auto=format&fit=crop&w=400&q=80'),
-                      createResult('cbo5', 'Bone', 0.75, true, 'https://images.unsplash.com/photo-1515455183297-e03f06744910?auto=format&fit=crop&w=400&q=80')
+                      createResult('cbo1', 'Movie:Avengers: Infinity War', 0.631, false, './cases/Letterboxd/case 2/omni/ft/1000040(1)63.1.jpg'),
+                      createResult('cbo2', 'Movie:Avengers: Endgame', 0.606, true, './cases/Letterboxd/case 2/omni/base/1000043(2)60.6.jpg'),
+                      createResult('cbo3', 'Movie:Marvel - The Infinity Saga', 0.600, false, './cases/Letterboxd/case 2/omni/base/1777243(3)60.0.jpg'),
+                      createResult('cbo4', 'Movie:superichkidsss', 0.561, false, './cases/Letterboxd/case 2/omni/base/1596580(4)56.1.jpg'),
+                      createResult('cbo5', 'Movie:Avengers 5', 0.517, false, './cases/Letterboxd/case 2/omni/base/1011117(5)51.7.jpg')
                     ]
                   },
-                  'clip-large': {
+                  'gme': {
                     baseline: [
-                      createResult('cl1', 'Hand X-ray', 0.68, true, 'https://images.unsplash.com/photo-1552196563-55cd4e45efb3?auto=format&fit=crop&w=400&q=80'),
-                      createResult('cl2', 'Generic Bone', 0.64, false, 'https://images.unsplash.com/photo-1530497610245-94d3c16cda28?auto=format&fit=crop&w=400&q=80'),
-                      createResult('cl3', 'Finger', 0.61, false, 'https://images.unsplash.com/photo-1589182373726-e4f658ab50f0?auto=format&fit=crop&w=400&q=80'),
-                      createResult('cl4', 'Skeleton', 0.58, false, 'https://images.unsplash.com/photo-1515455183297-e03f06744910?auto=format&fit=crop&w=400&q=80'),
-                      createResult('cl5', 'Arm', 0.55, false, 'https://images.unsplash.com/photo-1527101898812-c54555f1c456?auto=format&fit=crop&w=400&q=80')
+                      createResult('cl1', 'Movie:Avengers: Infinity War', 0.622, false, './cases/Letterboxd/case 2/gme/base/1000040(1)62.2.jpg'),
+                      createResult('cl2', 'Movie:Avengers: Endgame', 0.595, true, './cases/Letterboxd/case 2/gme/base/1000043(2)59.5.jpg'),
+                      createResult('cl3', 'Movie:superichkidsss', 0.591, false, './cases/Letterboxd/case 2/gme/base/1596580(3)59.1.jpg'),
+                      createResult('cl4', 'Movie:Marvel Studios: Assembling a Universe', 0.576, false, './cases/Letterboxd/case 2/gme/base/1020558(4)57.6.jpg'),
+                      createResult('cl5', 'Movie:Marvel - The Infinity Saga', 0.569, false, './cases/Letterboxd/case 2/gme/base/1777243(5)56.9.jpg')
                     ],
                     ours: [
-                      createResult('clo1', 'Distal Radius', 0.95, true, 'https://images.unsplash.com/photo-1552196563-55cd4e45efb3?auto=format&fit=crop&w=400&q=80'),
-                      createResult('clo2', 'Bone Break', 0.92, true, 'https://images.unsplash.com/photo-1584036561566-b938f493336c?auto=format&fit=crop&w=400&q=80'),
-                      createResult('clo3', 'Orthopedic', 0.89, true, 'https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&w=400&q=80'),
-                      createResult('clo4', 'Trauma', 0.87, true, 'https://images.unsplash.com/photo-1613918108466-392113e1b963?auto=format&fit=crop&w=400&q=80'),
-                      createResult('clo5', 'Fracture', 0.85, true, 'https://images.unsplash.com/photo-1589182373726-e4f658ab50f0?auto=format&fit=crop&w=400&q=80')
+                      createResult('clo1', 'Movie:Infinity War', 0.682, false, './cases/Letterboxd/case 2/gme/ft/1000040(1)68.2.jpg'),
+                      createResult('clo2', 'Movie:Avengers: Endgame', 0.643, true, './cases/Letterboxd/case 2/gme/ft/1000043(2)64.3.jpg'),
+                      createResult('clo3', 'Movie:superichkidsss', 0.622, false, './cases/Letterboxd/case 2/gme/ft/1596580(3)62.2.jpg'),
+                      createResult('clo4', 'Movie:Marvel - The Infinity Saga', 0.576, false, './cases/Letterboxd/case 2/gme/ft/1777243(4)57.6.jpg'),
+                      createResult('clo5', 'Movie:Marvel Studios: Assembling a Universe', 0.538, false, './cases/Letterboxd/gme/omni/ft/1020558(5)53.8.jpg')
                     ]
                   },
-                  'blip': {
+                  'bge': {
                     baseline: [
-                      createResult('bp1', 'Wrist X-ray', 0.72, true, 'https://images.unsplash.com/photo-1584036561566-b938f493336c?auto=format&fit=crop&w=400&q=80'),
-                      createResult('bp2', 'Orthopedic', 0.66, true, 'https://images.unsplash.com/photo-1552196563-55cd4e45efb3?auto=format&fit=crop&w=400&q=80'),
-                      createResult('bp3', 'Surgeon', 0.55, false, 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=400&q=80'),
-                      createResult('bp4', 'Cast', 0.52, false, 'https://images.unsplash.com/photo-1527101898812-c54555f1c456?auto=format&fit=crop&w=400&q=80'),
-                      createResult('bp5', 'Hand', 0.50, false, 'https://images.unsplash.com/photo-1613918108466-392113e1b963?auto=format&fit=crop&w=400&q=80')
+                      createResult('bp1', 'Movie:Infinity War', 0.450, false, './cases/Letterboxd/case 2/bge/base/1000040(1)45.0.jpg'),
+                      createResult('bp2', 'Movie:Marvel - The Infinity Saga', 0.423, false, './cases/Letterboxd/case 2/bge/base/1777243(2)42.3.jpg'),
+                      createResult('bp3', 'Movie:Avengers: Endgame', 0.414, true, './cases/Letterboxd/case 2/bge/base/1000043(3)41.4.jpg'),
+                      createResult('bp4', 'Movie:superichkidsss', 0.409, false, './cases/Letterboxd/case 2/bge/base/1596580(4)40.9.jpg'),
+                      createResult('bp5', 'Movie:The Avengers', 0.407, false, './cases/Letterboxd/case 2/bge/base/1000115(5)40.7.jpg')
                     ],
                     ours: [
-                      createResult('bpo1', 'Specific Fracture', 0.96, true, 'https://images.unsplash.com/photo-1552196563-55cd4e45efb3?auto=format&fit=crop&w=400&q=80'),
-                      createResult('bpo2', 'Radiography', 0.94, true, 'https://images.unsplash.com/photo-1584036561566-b938f493336c?auto=format&fit=crop&w=400&q=80'),
-                      createResult('bpo3', 'Bone Detail', 0.91, true, 'https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&w=400&q=80'),
-                      createResult('bpo4', 'Break', 0.89, true, 'https://images.unsplash.com/photo-1589182373726-e4f658ab50f0?auto=format&fit=crop&w=400&q=80'),
-                      createResult('bpo5', 'Orthopedic', 0.88, true, 'https://images.unsplash.com/photo-1515455183297-e03f06744910?auto=format&fit=crop&w=400&q=80')
+                      createResult('bpo1', 'Movie:Infinity War', 0.96, true, './cases/Letterboxd/case 2/bge/ft/1000040(1)46.5.jpg'),
+                      createResult('bpo2', 'Movie:Marvel - The Infinity Saga', 0.94, true, './cases/Letterboxd/case 2/bge/ft/1777243(2)44.0.jpg'),
+                      createResult('bpo3', 'Movie:Avengers: Endgame', 0.91, true, './cases/Letterboxd/case 2/bge/ft/1000043(3)41.5.jpg'),
+                      createResult('bpo4', 'Movie:superichkidsss', 0.89, true, './cases/Letterboxd/case 2/bge/ft/1439211(4)41.3.jpg'),
+                      createResult('bpo5', 'Movie:The Avengers', 0.88, true, './cases/Letterboxd/case 2/bge/ft/1000115(5)41.3.jpg')
+                    ]
+                  }
+                }
+              },
+              {
+                id: 'q3',
+                type: "Text-to-Image",
+                text: "When the Valley of Peace is threatened, lazy Po the panda discovers his destiny as the \"\"chosen one\"\" and trains to become a kung fu hero, but transforming the unsleek slacker into a brave warrior won't be easy. It's up to Master Shifu and the Furious Five -- Tigress, Crane, Mantis, Viper and Monkey -- to give it a try.",
+                desc: "Movie:Kung Fu Panda",
+                results: {
+                  'omni': {
+                    baseline: [
+                      createResult('cb1', 'Movie:Kung Fu Panda: Secrets of the Furious Five', 0.423, false, './cases/Letterboxd/case 3/omni/base/1017964(1)42.3.jpg'),
+                      createResult('cb2', 'Movie:Kung Fu Masters 3', 0.420, false, './cases/Letterboxd/case 3/omni/base/1214452(2)42.0.jpg'),
+                      createResult('cb3', 'Movie:Kung Fu Panda 4', 0.419, false, './cases/Letterboxd/case 3/omni/base/1001097(3)41.9.jpg'),
+                      createResult('cb4', 'Movie:Avengers: The Adventures of Panda Warrior', 0.412, false, './cases/Letterboxd/case 3/omni/base/1054372(4)41.2.jpg'),
+                      createResult('cb5', 'Movie:Avengers: Kung Fu Masters 2', 0.410, false, './cases/Letterboxd/case 3/omni/base/1280942(5)41.0.jpg')
+                    ],
+                    ours: [
+                      createResult('cbo1', 'Movie:Kung Fu Panda', 0.536, true, './cases/Letterboxd/case 2/omni/ft/1000341(1)53.6.jpg'),
+                      createResult('cbo2', 'Movie:Kung Fu Panda 4', 0.519, false, './cases/Letterboxd/case 2/omni/ft/1001097(2)51.9.jpg'),
+                      createResult('cbo3', 'Movie:Kung Fu Panda 3', 0.493, false, './cases/Letterboxd/case 2/omni/ft/1001074(3)49.3.jpg'),
+                      createResult('cbo4', 'Movie:Kung Fu Panda: The Emperor\'s Quest', 0.47, false, './cases/Letterboxd/case 2/omni/ft/1074828(4)47.0.jpg'),
+                      createResult('cbo5', 'Movie:Kung Fu Panda Holiday', 0.465, false, './cases/Letterboxd/case 2/omni/ft/1018982(5)46.5.jpg')
+                    ]
+                  },
+                  'gme': {
+                    baseline: [
+                      createResult('cl1', 'Movie:Kung Fu Panda 4', 0.583, false, './cases/Letterboxd/case 3/gme/base/1001097(1)58.3.jpg'),
+                      createResult('cl2', 'Movie:Kung Fu Panda: Secrets of the Masters', 0.565, false, './cases/Letterboxd/case 3/gme/base/1026101(2)56.5.jpg'),
+                      createResult('cl3', 'Movie:Kung Fu Panda: Secrets of the Furious Five', 0.557, false, './cases/Letterboxd/case 3/gme/base/1017964(3)55.7.jpg'),
+                      createResult('cl4', 'Movie:Kung Fu Panda: The Emperor\'s Quest', 0.554, false, './cases/Letterboxd/case 3/gme/base/1074828(4)55.4.jpg'),
+                      createResult('cl5', 'Movie:Kungfu Master', 0.550, false, './cases/Letterboxd/case 3/gme/base/1252456(5)55.0.jpg')
+                    ],
+                    ours: [
+                      createResult('clo1', 'Movie:Kung Fu Panda 4', 0.637, false, './cases/Letterboxd/case 3/gme/ft/1001097(1)63.7.jpg'),
+                      createResult('clo2', 'Movie:Kung Fu Panda: The Emperor\'s Quest', 0.692, false, './cases/Letterboxd/case 3/gme/ft/1074828(2)59.2.jpg'),
+                      createResult('clo3', 'Movie:Kungfu Master', 0.534, false, './cases/Letterboxd/case 3/gme/ft/1252456(3)53.4.jpg'),
+                      createResult('clo4', 'Movie:Kung Fu Panda', 0.505, true, './cases/Letterboxd/case 3/gme/ft/1000341(4)50.5.jpg'),
+                      createResult('clo5', 'Movie:Kung Fu Panda: Secrets of the Masters', 0.480, false, './cases/Letterboxd/case 3/gme/ft/1026101(5)48.0.jpg')
+                    ]
+                  },
+                  'bge': {
+                    baseline: [
+                      createResult('bp1', 'Movie:Kung Fu Panda: Secrets of the Masters', 0.486, false, './cases/Letterboxd/case 3/bge/base/1026101(1)48.6.jpg'),
+                      createResult('bp2', 'Movie:Kung Fu Panda 4', 0.471, false, './cases/Letterboxd/case 3/bge/base/1001097(2)47.1.jpg'),
+                      createResult('bp3', 'Movie:Kung Fu Masters 3', 0.462, false, './cases/Letterboxd/case 3/bge/base/1214452(3)46.2.jpg'),
+                      createResult('bp4', 'Movie:Kung Fu Panda: The Emperor\'s Quest', 0.461, false, './cases/Letterboxd/case 3/bge/base/1074828(4)46.1.jpg'),
+                      createResult('bp5', 'Movie:Kung Fu Panda 3', 0.453, false, './cases/Letterboxd/case 3/bge/base/1001074(5)45.3.jpg')
+                    ],
+                    ours: [
+                      createResult('bpo1', 'Movie:Kung Fu Panda', 0.535, true, './cases/Letterboxd/case 3/bge/ft/1000341(1)53.5.jpg'),
+                      createResult('bpo2', 'Movie:Kung Fu Panda 4', 0.521, false, './cases/Letterboxd/case 3/bge/ft/1001097(2)52.1.jpg'),
+                      createResult('bpo3', 'Movie:Kung Fu Panda: The Emperor\'s Quest', 0.91, false, './cases/Letterboxd/case 3/bge/ft/1074828(3)52.0.jpg'),
+                      createResult('bpo4', 'Movie:Kung Fu Masters 7: Kung Fu Monkey', 0.89, false, './cases/Letterboxd/case 3/bge/ft/1400131(4)47.2.jpg'),
+                      createResult('bpo5', 'Movie:Kung Fu Panda 3', 0.88, false, './cases/Letterboxd/case 3/bge/ft/1001074(5)47.0.jpg')
                     ]
                   }
                 }
@@ -194,8 +250,8 @@
             ]
           },
           {
-            id: 'remote',
-            domain: "Remote Sensing",
+            id: 'Goodreads',
+            domain: "Goodreads",
             icon: Layout,
             queries: [
               {
@@ -314,62 +370,175 @@
             ]
           },
           {
-            id: 'industrial',
-            domain: "Industrial Defect",
+            id: 'Steam',
+            domain: "Steam",
             icon: Cpu,
             queries: [
-               {
+            {
                 id: 'q1',
                 type: "Text-to-Image",
-                text: "Microchip surface scratch defect",
-                desc: "细微划痕检测：通用模型常忽略细微纹理差异。",
+                text: "When a young street hustler, a retired bank robber and a terrifying psychopath find themselves entangled with some of the most frightening and deranged elements of the criminal underworld, the U.S. government and the entertainment industry, they must pull off a series of dangerous heists to survive in a ruthless city in which they can trust nobody, least of all each other. Grand Theft Auto V for PC offers players the option to explore the award-winning world of Los Santos and Blaine County in resolutions of up to 4k and beyond, as well as the chance to experience the game running at 60 frames per second. The game offers players a huge range of PC-specific customization options, including over 25 separate configurable settings for texture quality, shaders, tessellation, anti-aliasing and more, as well as support and extensive customization for mouse and keyboard controls. Additional options include a population density slider to control car and pedestrian traffic, as well as dual and triple monitor support, 3D compatibility, and plug-and-play controller support. Grand Theft Auto V for PC also includes Grand Theft Auto Online, with support for 30 players and two spectators. Grand Theft Auto Online for PC will include all existing gameplay upgrades and Rockstar-created content released since the launch of Grand Theft Auto Online, including Heists and Adversary modes. The PC version of Grand Theft Auto V and Grand Theft Auto Online features First Person Mode, giving players the chance to explore the incredibly detailed world of Los Santos and Blaine County in an entirely new way. Grand Theft Auto V for PC also brings the debut of the Rockstar Editor, a powerful suite of creative tools to quickly and easily capture, edit and share game footage from within Grand Theft Auto V and Grand Theft Auto Online. The Rockstar Editor’s Director Mode allows players the ability to stage their own scenes using prominent story characters, pedestrians, and even animals to bring their vision to life. Along with advanced camera manipulation and editing effects including fast and slow motion, and an array of camera filters, players can add their own music using songs from GTAV radio stations, or dynamically control the intensity of the game’s score. Completed videos can be uploaded directly from the Rockstar Editor to YouTube and the Rockstar Games Social Club for easy sharing. Soundtrack artists The Alchemist and Oh No return as hosts of the new radio station, The Lab FM. The station features new and exclusive music from the production duo based on and inspired by the game’s original soundtrack. Collaborating guest artists include Earl Sweatshirt, Freddie Gibbs, Little Dragon, Killer Mike, Sam Herring from Future Islands, and more. Players can also discover Los Santos and Blaine County while enjoying their own music through Self Radio, a new radio station that will host player-created custom soundtracks.",
+                desc: "Game:The Truman Show",
+                queryImage: "", 
                 results: {
-                  'clip-base': {
+                  'omni': {
                     baseline: [
-                      createResult('cb1', 'Chip Generic', 0.45, false, 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=400&q=80'),
-                      createResult('cb2', 'PCB Board', 0.42, false, 'https://images.unsplash.com/photo-1555664424-778a1e5e1b48?auto=format&fit=crop&w=400&q=80'),
-                      createResult('cb3', 'Tech Art', 0.40, false, 'https://images.unsplash.com/photo-1597733336794-12d05021d510?auto=format&fit=crop&w=400&q=80'),
-                      createResult('cb4', 'Computer', 0.38, false, 'https://images.unsplash.com/photo-1592659762303-90081d34b277?auto=format&fit=crop&w=400&q=80'),
-                      createResult('cb5', 'Metal', 0.35, false, 'https://images.unsplash.com/photo-1580894908361-967195033215?auto=format&fit=crop&w=400&q=80')
+                      createResult('cb1', 'Game:Drug Dealer Sim: Street Hustle', 0.485, false, './cases/Steam/case 1/omni/base/2850900(1)48.5.jpg'),
+                      createResult('cb2', 'Game:Thugsters Battle Royale', 0.477, false, './cases/Steam/case 1/omni/base/1118500(2)47.7.jpg'),
+                      createResult('cb3', 'Game:Survival Revelation: End of Days', 0.477, false, './cases/Steam/case 1/omni/base/2408700(3)47.7.jpg'),
+                      createResult('cb4', 'Game: Clown Thug Cop Zombies', 0.458, false, './cases/Steam/case 1/omni/base/1023320(4)45.8.jpg'),
+                      createResult('cb5', 'Game:Rob the bank', 0.458, false, './cases/Steam/case 1/omni/base/1872170(5)45.8.jpg')
                     ],
                     ours: [
-                      createResult('cbo1', 'Scratch Mark', 0.85, true, 'https://images.unsplash.com/photo-1580894908361-967195033215?auto=format&fit=crop&w=400&q=80'),
-                      createResult('cbo2', 'Surface Noise', 0.82, true, 'https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&w=400&q=80'),
-                      createResult('cbo3', 'Defect', 0.79, true, 'https://images.unsplash.com/photo-1592659762303-90081d34b277?auto=format&fit=crop&w=400&q=80'),
-                      createResult('cbo4', 'Microcrack', 0.76, true, 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=400&q=80'),
-                      createResult('cbo5', 'Fault', 0.74, true, 'https://images.unsplash.com/photo-1555664424-778a1e5e1b48?auto=format&fit=crop&w=400&q=80')
+                      createResult('cbo1', 'Game:Grand Theft Auto V Legacy', 0.556, true, './cases/Steam/case 1/omni/ft/271590(1).jpg'),
+                      createResult('cbo2', 'Game:Grand Theft Auto V Enhanced', 0.546, false, './cases/Steam/case 1/omni/ft/3240220(2).jpg'),
+                      createResult('cbo3', 'Game:Grand Theft Auto IV: The Complete Edition', 0.512, false, './cases/Steam/case 1/omni/ft/12210(3).jpg'),
+                      createResult('cbo4', 'Game:Filthy Animals | Heist Simulator', 0.509, false, './cases/Steam/case 1/omni/ft/1195420(4).jpg'),
+                      createResult('cbo5', 'Game:Grand Theft Auto: San Andreas – The Definitive Edition', 0.489, false, './cases/Steam/case 1/omni/ft/1547000(5).jpg')
                     ]
                   },
-                  'clip-large': {
-                     baseline: [
-                      createResult('cl1', 'CPU Close', 0.65, true, 'https://images.unsplash.com/photo-1592659762303-90081d34b277?auto=format&fit=crop&w=400&q=80'),
-                      createResult('cl2', 'Processor', 0.60, false, 'https://images.unsplash.com/photo-1555664424-778a1e5e1b48?auto=format&fit=crop&w=400&q=80'),
-                      createResult('cl3', 'Silicon', 0.55, false, 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=400&q=80'),
-                      createResult('cl4', 'Tech', 0.52, false, 'https://images.unsplash.com/photo-1597733336794-12d05021d510?auto=format&fit=crop&w=400&q=80'),
-                      createResult('cl5', 'Macro', 0.50, false, 'https://images.unsplash.com/photo-1580894908361-967195033215?auto=format&fit=crop&w=400&q=80')
+                  'gme': {
+                    baseline: [
+                      createResult('cl1', 'Game:Grand Theft Auto V Enhanced', 0.604, false, './cases/Steam/case 1/gme/base/3240220(1)60.4.jpg'),
+                      createResult('cl2', 'Game:Grand Theft Auto V Legacy', 0.594, true, './cases/Steam/case 1/gme/base/271590(2)59.4.jpg'),
+                      createResult('cl3', 'Game:Grand Theft Auto IV: The Complete Edition', 0.492, false, './cases/Steam/case 1/gme/base/12210(3)49.2.jpg'),
+                      createResult('cl4', 'Game:Grand Theft Auto: San Andreas – The Definitive Edition', 0.476, false, './cases/Steam/case 1/gme/base/1547000(4)47.6.jpg'),
+                      createResult('cl5', 'Game:Poly Plaza', 0.464, false, './cases/Steam/case 1/gme/base/2716030(5)46.4.jpg')
                     ],
                     ours: [
-                      createResult('clo1', 'Scratch Feature', 0.91, true, 'https://images.unsplash.com/photo-1580894908361-967195033215?auto=format&fit=crop&w=400&q=80'),
-                      createResult('clo2', 'Texture Anomaly', 0.89, true, 'https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&w=400&q=80'),
-                      createResult('clo3', 'Surface Defect', 0.86, true, 'https://images.unsplash.com/photo-1592659762303-90081d34b277?auto=format&fit=crop&w=400&q=80'),
-                      createResult('clo4', 'Flaw', 0.84, true, 'https://images.unsplash.com/photo-1555664424-778a1e5e1b48?auto=format&fit=crop&w=400&q=80'),
-                      createResult('clo5', 'Damage', 0.81, true, 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=400&q=80')
+                      createResult('clo1', 'Game:Grand Theft Auto V Legacy', 0.644, true, './cases/Steam/case 1/gme/ft/271590(1)64.4.jpg'),
+                      createResult('clo2', 'Game:Grand Theft Auto V Enhanced', 0.596, false, './cases/Steam/case 1/gme/ft/3240220(2)59.6.jpg'),
+                      createResult('clo3', 'Game:Grand Theft Auto: San Andreas – The Definitive Edition', 0.512, false, './cases/Steam/case 1/gme/ft/1547000(3)51.2.jpg'),
+                      createResult('clo4', 'Game:Grand Theft Auto IV: The Complete Edition', 0.54, false, './cases/Steam/case 1/gme/ft/12210(4)54.0.jpg'),
+                      createResult('clo5', 'Game:V Gate', 0.485, false, './cases/Steam/case 1/gme/ft/2542520(5)48.5.jpg')
                     ]
                   },
-                  'blip': {
-                     baseline: [
-                      createResult('bp1', 'Metal Texture', 0.70, true, 'https://images.unsplash.com/photo-1580894908361-967195033215?auto=format&fit=crop&w=400&q=80'),
-                      createResult('bp2', 'Circuit', 0.65, false, 'https://images.unsplash.com/photo-1592659762303-90081d34b277?auto=format&fit=crop&w=400&q=80'),
-                      createResult('bp3', 'Hardware', 0.62, false, 'https://images.unsplash.com/photo-1555664424-778a1e5e1b48?auto=format&fit=crop&w=400&q=80'),
-                      createResult('bp4', 'Components', 0.58, false, 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=400&q=80'),
-                      createResult('bp5', 'Steel', 0.55, false, 'https://images.unsplash.com/photo-1597733336794-12d05021d510?auto=format&fit=crop&w=400&q=80')
+                  'bge': {
+                    baseline: [
+                      createResult('bp1', 'Game:Gangs of the street', 0.379, false, './cases/Steam/case 1/bge/base/2738180(1)37.9.jpg'),
+                      createResult('bp2', 'Game:Grand Theft Auto IV: The Complete Edition', 0.379, false, './cases/Steam/case 1/bge/base/12210(2)37.9.jpg'),
+                      createResult('bp3', 'Game:Gangsta Underground : The Poker', 0.362, false, './cases/Steam/case 1/bge/base/689720(3)36.2.jpg'),
+                      createResult('bp4', 'Game:Crime Boss: Rockay City', 0.362, false, './cases/Steam/case 1/bge/base/2933080(4)36.2.jpg'),
+                      createResult('bp5', 'Game:Grand Theft Auto V Legacy', 0.261, true, './cases/Steam/case 1/bge/base/271590(5)36.1.jpg')
                     ],
                     ours: [
-                      createResult('bpo1', 'Defect Pattern', 0.94, true, 'https://images.unsplash.com/photo-1580894908361-967195033215?auto=format&fit=crop&w=400&q=80'),
-                      createResult('bpo2', 'Anomaly', 0.92, true, 'https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&w=400&q=80'),
-                      createResult('bpo3', 'Fine Scratch', 0.90, true, 'https://images.unsplash.com/photo-1592659762303-90081d34b277?auto=format&fit=crop&w=400&q=80'),
-                      createResult('bpo4', 'Wear', 0.88, true, 'https://images.unsplash.com/photo-1555664424-778a1e5e1b48?auto=format&fit=crop&w=400&q=80'),
-                      createResult('bpo5', 'Abrasion', 0.85, true, 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=400&q=80')
+                      createResult('bpo1', 'Game:Grand Theft Auto IV: The Complete Edition', 0.511, false, './cases/Steam/case 1/bge/ft/12210(1)51.1.jpg'),
+                      createResult('bpo2', 'Game:Grand Theft Auto V Legacy', 0.474, true, './cases/Steam/case 1/bge/ft/271590(2)47.4.jpg'),
+                      createResult('bpo3', 'Game:Gangs of the street', 0.473, false, './cases/Steam/case 1/bge/ft/2738180(3)47.3.jpg'),
+                      createResult('bpo4', 'Game:Gangsta Underground : The Poker', 0.469, false, './cases/Steam/case 1/bge/ft/689720(4)46.9.jpg'),
+                      createResult('bpo5', 'Game:Crime Boss: Rockay City', 0.463, false, './cases/Steam/case 1/bge/ft/2933080(5)46.3.jpg')
+                    ]
+                  }
+                }
+              },
+              {
+                id: 'q2',
+                type: "Text-to-Image",
+                text: "LAND, LOOT, SURVIVE! Play PUBG: BATTLEGROUNDS for free. Land on strategic locations, loot weapons and supplies, and survive to become the last team standing across various, diverse Battlegrounds. Squad up and join the Battlegrounds for the original Battle Royale experience that only PUBG: BATTLEGROUNDS can offer. This content download will also provide access to the BATTLEGROUNDS Test Server, which requires a separate download to play.  Optional in-game purchases available.",
+                desc: "Game:PUBG: BATTLEGROUNDS",
+                results: {
+                  'omni': {
+                    baseline: [
+                      createResult('cb1', 'Game:Survival for Treasure', 0.474, false, './cases/Steam/case 2/omni/base/2358920(1).jpg'),
+                      createResult('cb2', 'Game:Battle for the last chicken', 0.456, false, './cases/Steam/case 2/omni/base/753920(2).jpg'),
+                      createResult('cb3', 'Game:For Sparta', 0.437, false, './cases/Steam/case 2/omni/base/1867790(3).jpg'),
+                      createResult('cb4', 'Game:LAST GARY 最后的盖里', 0.429, false, './cases/Steam/case 2/omni/base/1877980(4).jpg'),
+                      createResult('cb5', 'Game:Survive In Strange World', 0.410, false, './cases/Steam/case 2/omni/base/2780760(5).jpg')
+                    ],
+                    ours: [
+                      createResult('cbo1', 'Game:PUBG: BATTLEGROUNDS', 0.489, true, './cases/Steam/case 2/omni/ft/578080(1)48.9.jpg'),
+                      createResult('cbo2', 'Game:SurvivalZ Battlegrounds', 0.468, false, './cases/Steam/case 2/omni/ft/873220(2)46.8.jpg'),
+                      createResult('cbo3', 'Game:Battleground', 0.451, false, './cases/Steam/case 2/omni/ft/1339790(3)45.1.jpg'),
+                      createResult('cbo4', 'Game:War Battle Royale Battlegrounds', 0.434, false, './cases/Steam/case 2/omni/ft/1148300(4)43.4.jpg'),
+                      createResult('cbo5', 'Game:Battlerite Royale', 0.413, false, './cases/Steam/case 2/omni/ft/879160(5)41.3.jpg')
+                    ]
+                  },
+                  'gme': {
+                    baseline: [
+                      createResult('cl1', 'Game:PUBG: BATTLEGROUNDS', 0.569, true, './cases/Steam/case 2/gme/base/578080(1)56.9.jpg'),
+                      createResult('cl2', 'Game:BRoS - Battle Royale of Survival', 0.450, false, './cases/Steam/case 2/gme/base/1428730(2)45.0.jpg'),
+                      createResult('cl3', 'Game:Battlerite Royale', 0.449, false, './cases/Steam/case 2/gme/base/879160(3)44.9.jpg'),
+                      createResult('cl4', 'Game:Battleground', 0.447, false, './cases/Steam/case 2/gme/base/1339790(4)44.7.jpg'),
+                      createResult('cl5', 'Game:AMBER Battle Royale', 0.434, false, './cases/Steam/case 2/gme/base/2189890(5)43.4.jpg')
+                    ],
+                    ours: [
+                      createResult('clo1', 'Game:PUBG: BATTLEGROUNDS', 0.617, true, './cases/Steam/case 2/gme/ft/578080(1)61.7.jpg'),
+                      createResult('clo2', 'Game:Battleground', 0.480, false, './cases/Steam/case 2/gme/ft/1339790(2)48.0.jpg'),
+                      createResult('clo3', 'Game:TRANSFORMERS: BATTLEGROUNDS', 0.428, false, './cases/Steam/case 2/gme/ft/1177000(3)42.8.jpg'),
+                      createResult('clo4', 'Game:Bedroom Battlegrounds', 0.411, false, './cases/Steam/case 2/gme/ft/2776110(4)41.1.jpg'),
+                      createResult('clo5', 'Game:Legends\' Battlegrounds', 0.394, false, './cases/Steam/gme/omni/ft/3131780(5)39.4.jpg')
+                    ]
+                  },
+                  'bge': {
+                    baseline: [
+                      createResult('bp1', 'Game:PUBG: BATTLEGROUNDS', 0.402, true, './cases/Steam/case 2/bge/base/578080(1)40.2.jpg'),
+                      createResult('bp2', 'Game:LandFall Survival', 0.382, false, './cases/Steam/case 2/bge/base/2438270(2)38.2.jpg'),
+                      createResult('bp3', 'Game:Virtual Battlegrounds', 0.368, false, './cases/Steam/case 2/bge/base/823940(3)36.8.jpg'),
+                      createResult('bp4', 'Game:THE LAST PLAYER:VR Battle Royale', 0.367, false, './cases/Steam/case 2/bge/base/1015610(4)36.7.jpg'),
+                      createResult('bp5', 'Game:Survival Games', 0.359, false, './cases/Steam/case 2/bge/base/307150(5)35.9.jpg')
+                    ],
+                    ours: [
+                      createResult('bpo1', 'Game:PUBG: BATTLEGROUNDS', 0.448, true, './cases/Steam/case 2/bge/ft/578080(1)44.8.jpg'),
+                      createResult('bpo2', 'Game:Survival Games', 0.387, false, './cases/Steam/case 2/bge/ft/307150(2)38.7.jpg'),
+                      createResult('bpo3', 'Game:Virtual Battlegrounds', 0.381, false, './cases/Steam/case 2/bge/ft/823940(3)38.1.jpg'),
+                      createResult('bpo4', 'Game:Gangsta Underground : The Poker', 0.369, false, './cases/Steam/case 2/bge/ft/689720(4)36.9.jpg'),
+                      createResult('bpo5', 'Game:Pixel Royale', 0.361, false, './cases/Steam/case 2/bge/ft/931250(5)36.1.jpg')
+                    ]
+                  }
+                }
+              },
+              {
+                id: 'q3',
+                type: "Text-to-Image",
+                text: "Embark on the craziest journey of your life in It Takes Two, a genre-bending platform adventure created purely for co-op. Invite a friend to join for free with Friend’s Pass and work together across a huge variety of gleefully disruptive gameplay challenges. Play as the clashing couple Cody and May, two humans turned into dolls by a magic spell. Together, trapped in a fantastical world where the unpredictable hides around every corner, they are reluctantly challenged with saving their fractured relationship. Master unique and connected character abilities in every new level. Help each other across an abundance of unexpected obstacles and laugh-out-loud moments. Kick gangster squirrels’ furry tails, pilot a pair of underpants, DJ a buzzing night club, and bobsleigh through a magical snow globe. Embrace a heartfelt and hilarious story where narrative and gameplay weave into a uniquely metaphorical experience. It Takes Two is developed by the award-winning studio Hazelight, the industry leader of cooperative play. They’re about to take you on a wild and wondrous ride where only one thing is for certain: we’re better together. KEY FEATURES Pure co-op perfection — Invite a friend to join for free with Remote Play Together**, and experience a thrilling adventure built purely for two. Choose from couch or online co-op with split-screen play, and face ever-changing challenges where working together is the only way forward. Gleefully disruptive gameplay — From rampaging vacuum cleaners to suave love gurus, you never know what you’ll be up against next. Filled with genre-bending challenges and new character abilities to master in every level, experience a metaphorical merging of gameplay and narrative that pushes the boundaries of interactive storytelling. A universal tale of relationships — Discover a touching and heartfelt story of the challenges in getting along. Help Cody and May learn how to overcome their differences. Meet a diverse cast of strange and endearing characters. Join forces and go on an adventure you’ll treasure — together! ABOUT HAZELIGHT Hazelight is an award-winning independent game development studio based in Stockholm, Sweden. Founded in 2014 by Josef Fares (film director and creator of the award-winning game Brothers: A Tale of Two Sons), Hazelight is committed to pushing the creative boundaries of what is possible in games. In 2018, Hazelight released the BAFTA award-winning A Way Out — the first-ever co-op only, third-person action-adventure — as part of the EA Originals program. ABOUT EA ORIGINALS EA Originals helps shine a light on some of the most passionate, independent, and talented game studios across the globe. Discover innovative and unforgettable gaming experiences from highly creative game makers who love to enchant and inspire.",
+                desc: "Game:It Takes Two",
+                results: {
+                  'omni': {
+                    baseline: [
+                      createResult('cb1', 'Game:Operation: Tango - Friend Pass', 0.428, false, './cases/Steam/case 3/omni/base/1377150(1)42.8.jpg'),
+                      createResult('cb2', 'Game:Two Hands Eggs', 0.419, false, './cases/Steam/case 3/omni/base/2378490(2)41.9.jpg'),
+                      createResult('cb3', 'Game:Farm Together 2', 0.412, false, './cases/Steam/case 3/omni/base/2418520(3)41.2.jpg'),
+                      createResult('cb4', 'Game:May\'s Journey', 0.404, false, './cases/Steam/case 3/omni/base/2966790(4)40.4.jpg'),
+                      createResult('cb5', 'Game:Stick \'Em Up 2: Paper Adventures', 0.399, false, './cases/Steam/case 3/omni/base/282780(5)39.9.jpg')
+                    ],
+                    ours: [
+                      createResult('cbo1', 'Game:It Takes Two Friend\'s Pass', 0.525, false, './cases/Steam/case 2/omni/ft/2995920(1).jpg'),
+                      createResult('cbo2', 'Game:It Takes Two', 0.517, true, './cases/Steam/case 2/omni/base/1426210(2).jpg'),
+                      createResult('cbo3', 'Game:Tasks for Two', 0.498, false, './cases/Steam/case 2/omni/base/3393690(3).jpg'),
+                      createResult('cbo4', 'Game:Five Nights: No Escape', 0.483, false, './cases/Steam/case 2/omni/base/2374030(4).jpg'),
+                      createResult('cbo5', 'Game:Operation: Tango - Friend Pass', 0.475, false, './cases/Steam/case 2/omni/base/1377150(5).jpg')
+                    ]
+                  },
+                  'gme': {
+                    baseline: [
+                      createResult('cl1', 'Game:It Takes Two Friend\'s Pass', 0.685, false, './cases/Steam/case 3/gme/base/2995920(1)68.5.jpg'),
+                      createResult('cl2', 'Game:It Takes Two', 0.684, true, './cases/Steam/case 3/gme/base/1426210(2)68.4.jpg'),
+                      createResult('cl3', 'Game:AK-xolotl: Together', 0.526, false, './cases/Steam/case 3/gme/base/1479140(3)52.6.jpg'),
+                      createResult('cl4', 'Game:Let\'s Cook Together 2', 0.512, false, './cases/Steam/case 3/gme/base/1637400(4)51.2.jpg'),
+                      createResult('cl5', 'Game:An Odd Tale', 0.511, false, './cases/Steam/case 3/gme/base/1651850(5)51.1.jpg')
+                    ],
+                    ours: [
+                      createResult('clo1', 'Game:It Takes Two', 0.770, true, './cases/Steam/case 3/gme/ft/1426210(1)77.0.jpg'),
+                      createResult('clo2', 'Game:It Takes Two Friend\'s Pass', 0.635, false, './cases/Steam/case 3/gme/ft/2995920(2)63.5.jpg'),
+                      createResult('clo3', 'Game:Tasks for Two', 0.386, false, './cases/Steam/case 3/gme/ft/3393690(3)38.6.jpg'),
+                      createResult('clo4', 'Game:Tick Tock: A Tale for Two', 0.385, false, './cases/Steam/case 3/gme/ft/790740(4)38.5.jpg'),
+                      createResult('clo5', 'Game:TicTacToeTwo', 0.367, false, './cases/Steam/case 3/gme/ft/3303950(5)36.7.jpg')
+                    ]
+                  },
+                  'bge': {
+                    baseline: [
+                      createResult('bp1', 'Game:It Takes Two Friend\'s Pass', 0.353, false, './cases/Steam/case 3/bge/base/2995920(1)35.3.jpg'),
+                      createResult('bp2', 'Game:Claws of Furry', 0.334, false, './cases/Steam/case 3/bge/base/656580(2)33.4.jpg'),
+                      createResult('bp3', 'Game:AK-xolotl: Together', 0.332, false, './cases/Steam/case 3/bge/base/1479140(3)33.2.jpg'),
+                      createResult('bp4', 'Game:Only Out', 0.328, false, './cases/Steam/case 3/bge/base/3349930(4)32.8.jpg'),
+                      createResult('bp5', 'Game:It Takes Two', 0.325, true, './cases/Steam/case 3/bge/base/1426210(5)32.5.jpg')
+                    ],
+                    ours: [
+                      createResult('bpo1', 'Game:It Takes Two Friend\'s Pass', 0.358, false, './cases/Steam/case 3/bge/ft/2995920(1)35.8.jpg'),
+                      createResult('bpo2', 'Game:It Takes Two', 0.335, true, './cases/Steam/case 3/bge/ft/1426210(2)33.5.jpg'),
+                      createResult('bpo3', 'Game:Operation: Tango - Friend Pass', 0.326, false, './cases/Steam/case 3/bge/ft/1377150(3)32.6.jpg'),
+                      createResult('bpo4', 'Game:Twogether: Project Indigos Chapter 1', 0.319, false, './cases/Steam/case 3/bge/ft/1977640(4)31.9.jpg'),
+                      createResult('bpo5', 'Game:We Were Here Expeditions: The FriendShip', 0.320, false, './cases/Steam/case 3/bge/ft/2296990(5)31.0.jpg')
                     ]
                   }
                 }
@@ -494,8 +663,8 @@
                       <Database size={18} />
                     </div>
                     <div>
-                      <h1 className="text-lg font-bold tracking-tight text-slate-900">MultiModal DA Vis</h1>
-                      <p className="text-[10px] text-slate-500 font-medium uppercase tracking-wider">Model Comparison Dashboard</p>
+                      <h1 className="text-lg font-bold tracking-tight text-slate-900">Model Comparison Dashboard</h1>
+                      <p className="text-[10px] text-slate-500 font-medium uppercase tracking-wider">Retrieval Case Studies</p> 
                     </div>
                   </div>
                   <nav className="hidden md:flex items-center gap-6 text-sm font-medium text-slate-600">
