@@ -511,7 +511,7 @@
         const ExpandableText = ({ text }) => {
           const [isExpanded, setIsExpanded] = useState(false);
           // 简单的判断：如果文字超过200个字符，就认为它是长文本
-          const isLongText = text.length > 200;
+          const isLongText = text.length > 300;
 
           if (!isLongText) {
             return <h3 className="text-lg font-medium text-slate-900 leading-tight">{text}</h3>;
@@ -656,7 +656,7 @@
                       <Database size={18} />
                     </div>
                     <div>
-                      <h1 className="text-lg font-bold tracking-tight text-slate-900">MultiModal Domain Adapt</h1>
+                      <h1 className="text-lg font-bold tracking-tight text-slate-900">UDA for MLLM-based Embedding Model</h1>
                       <p className="text-[10px] text-slate-500 font-medium uppercase tracking-wider">Retrieval Case Studies</p> 
                     </div>
                   </div>
