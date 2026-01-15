@@ -94,6 +94,120 @@
             icon: Zap,
             queries: [
               {
+                id: 'query1',
+                type: "Text-to-Text&Image",
+                text: "Do mia and sebastian end up together in la la land",
+                desc: "Movie:La La Land",
+                queryImage: "", 
+                results: {
+                  'omni': {
+                    baseline: [
+                      createResult('lq1ob1', 'Movie:Lisa Lisa', 0.501, false, './Letterboxd/query1/omni/base/1535222_1_50.1.jpg'),
+                      createResult('lq1ob2', 'Movie:The Further Adventures of the Ugly Duckling', 0.499, false, './Letterboxd/query1/omni/base/1238718_2_49.9.jpg'),
+                      createResult('lq1ob3', 'Movie:La La Land', 0.492, true, './Letterboxd/query1/omni/base/1000005_3_49.2.jpg'),
+                      createResult('lq1ob4', 'Movie:Shaadi Ke Side Effects', 0.476, false, './Letterboxd/query1/omni/base/1056015_4_47.6.jpg'),
+                      createResult('lq1ob5', 'Movie:Sebastian', 0.473, false, './Letterboxd/query1/omni/base/1625472_5_47.3.jpg')
+                    ],
+                    ours: [
+                      createResult('lq1of1', 'Movie:La La Land', 0.611, true, './Letterboxd/query1/omni/ft/1000005_1_61.1.jpg'),
+                      createResult('lq1of2', 'Movie:A Song for Mia', 0.371, false, './Letterboxd/query1/omni/ft/1178781_2_37.1.jpg'),
+                      createResult('lq1of3', 'Movie:The Day Will Come When You Won\'t Be', 0.289, false, './Letterboxd/query1/omni/ft/1569522_3_28.9.jpg'),
+                      createResult('lq1of4', 'Movie:El indefinido', 0.284, false, './Letterboxd/query1/omni/ft/1689458_4_28.4.jpg'),
+                      createResult('lq1of5', 'Movie:LA LA Land', 0.283, false, './Letterboxd/query1/omni/ft/1313763_5_28.3.jpg')
+                    ]
+                  },
+                  'gme': {
+                    baseline: [
+                      createResult('lq1gb1', 'Movie:What\'s Real', 0.429, false, './Letterboxd/query1/gme/base/1296718_1_42.9.jpg'),
+                      createResult('lq1gb2', 'Movie:Write About Love', 0.433, false, './Letterboxd/query1/gme/base/1066583_2_43.3.jpg'),
+                      createResult('lq1gb3', 'Movie:The Day Will Come When You Won\'t Be', 0.409, false, './Letterboxd/query1/gme/base/1569522_3_40.9.jpg'),
+                      createResult('lq1gb4', 'Movie:Mia Wallace', 0.406, false, './Letterboxd/query1/gme/base/1873537_4_40.6.jpg'),
+                      createResult('lq1gb5', 'Movie:MIA', 0.402, false, './Letterboxd/query1/gme/base/1927701_5_40.2.jpg')
+                    ],
+                    ours: [
+                      createResult('lq1gf1', 'Movie:La La Land', 0.571, true, './Letterboxd/query1/gme/ft/1000005_1_57.1.jpg'),
+                      createResult('lq1gf2', 'Movie:A Song for Mia', 0.497, false, './Letterboxd/query1/gme/ft/1178781_2_49.7.jpg'),
+                      createResult('lq1gf3', 'Movie:LA LA Land', 0.483, false, './Letterboxd/query1/gme/ft/1313763_3_48.3.jpg'),
+                      createResult('lq1gf4', 'Movie:The Day Will Come When You Won\'t Be', 0.482, false, './Letterboxd/query1/gme/ft/1569522_4_48.2.jpg'),
+                      createResult('lq1gf5', 'Movie:Mia', 0.478, false, './Letterboxd/query1/gme/ft/1354517_5_47.8.jpg')
+                    ]
+                  },
+                  'bge': {
+                    baseline: [
+                      createResult('lq1bb1', 'Movie:La La Land', 0.550, true, './Letterboxd/query1/bge/base/1000005_1_55.0.jpg'),
+                      createResult('lq1bb2', 'Movie', 0.419, false, './Letterboxd/query1/bge/base/1296718_2_41.9.jpg'),
+                      createResult('lq1bb3', 'Movie', 0.407, false, './Letterboxd/query1/bge/base/1066583_3_40.7.jpg'),
+                      createResult('lq1bb4', 'Movie', 0.399, false, './Letterboxd/query1/bge/base/1624560_4_39.9.jpg'),
+                      createResult('lq1bb5', 'Movie', 0.397, false, './Letterboxd/query1/bge/base/1913193_5_39.7.jpg')
+                    ],
+                    ours: [
+                      createResult('lq1bf1', 'Movie:La La Land', 0.513, true, './Letterboxd/query1/bge/ft/1000005_1_51.3.jpg'),
+                      createResult('lq1bf2', 'Movie:What\'s Real', 0.410, false, './Letterboxd/query1/bge/ft/1178781_2_41.0.jpg'),
+                      createResult('lq1bf3', 'Movie:Can\'t Be Undone', 0.392, false, './Letterboxd/query1/bge/ft/1420855_3_39.2.jpg'),
+                      createResult('lq1bf4', 'Movie:#WalangForever', 0.390, false, './Letterboxd/query1/bge/ft/1097506_4_39.0.jpg'),
+                      createResult('lq1bf5', 'Movie:Mia', 0.388, false, './Letterboxd/query1/bge/ft/1540547_5_38.8.jpg')
+                    ]
+                  }
+                }
+              },
+              {
+                id: 'query2',
+                type: "Text-to-Text&Image",
+                text: "Movie where daughter invites 3 potential dads to her wedding",
+                desc: "Movie:Mamma Mia!",
+                queryImage: "", 
+                results: {
+                  'omni': {
+                    baseline: [
+                      createResult('lq2ob1', 'Movie:Two Stepmoms', 0.448, false, './Letterboxd/query2/omni/base/1140463_1_44.8.jpg'),
+                      createResult('lq2ob2', 'Movie:See Jane Date', 0.446, false, './Letterboxd/query2/omni/base/1115560_2_44.6.jpg'),
+                      createResult('lq2ob3', 'Movie:"Tora Tora, Bang Bang Bang"', 0.434, false, './Letterboxd/query2/omni/base/1552335_3_43.4.jpg'),
+                      createResult('lq2ob4', 'Movie:My Boyfriends\' Dogs', 0.430, false, './Letterboxd/query2/omni/base/1100623_4_43.0.jpg'),
+                      createResult('lq2ob5', 'Movie:AV', 0.424, false, './Letterboxd/query2/omni/base/1095256_5_42.4.jpg')
+                    ],
+                    ours: [
+                      createResult('lq2of1', 'Movie:Mamma Mia!', 0.538, true, './Letterboxd/query2/omni/ft/1000208_1_53.8.jpg'),
+                      createResult('lq2of2', 'Movie:Children of the Bride', 0.530, false, './Letterboxd/query2/omni/ft/1136845_2_53.0.jpg'),
+                      createResult('lq2of3', 'Movie:All My Darling Daughters', 0.524, false, './Letterboxd/query2/omni/ft/1319687_3_52.4.jpg'),
+                      createResult('lq2of4', 'Movie:"Take My Daughters, Please"', 0.516, false, './Letterboxd/query2/omni/ft/1307702_4_51.6.jpg'),
+                      createResult('lq2of5', 'Movie:Wedding Screeners', 0.501, false, './Letterboxd/query2/omni/ft/1737284_5_50.1.jpg')
+                    ]
+                  },
+                  'gme': {
+                    baseline: [
+                      createResult('lq2gb1', 'Movie:Love Is Everything', 0.445, false, './Letterboxd/query2/gme/base/1178605_1_44.5.jpg'),
+                      createResult('lq2gb2', 'Movie', 0.439, false, './Letterboxd/query2/gme/base/1035248_2_43.9.jpg'),
+                      createResult('lq2gb3', 'Movie', 0.431, false, './Letterboxd/query2/gme/base/1028898_3_43.1.jpg'),
+                      createResult('lq2gb4', 'Movie', 0.426, false, './Letterboxd/query2/gme/base/1008862_4_42.6.jpg'),
+                      createResult('lq2gb5', 'Movie', 0.418, false, './Letterboxd/query2/gme/base/1230777_5_41.8.jpg')
+                    ],
+                    ours: [
+                      createResult('lq2gf1', 'Movie:Mamma Mia!', 0.498, true, './Letterboxd/query2/gme/ft/1000208_1_49.8.jpg'),
+                      createResult('lq2gf2', 'Movie:Our Family Wedding', 0.493, false, './Letterboxd/query2/gme/ft/1185972_2_49.3.jpg'),
+                      createResult('lq2gf3', 'Movie:A Day at the Oasis', 0.487, false, './Letterboxd/query2/gme/ft/1650130_3_48.7.jpg'),
+                      createResult('lq2gf4', 'Movie:Call Me Daddy', 0.483, false, './Letterboxd/query2/gme/ft/1140541_4_48.3.jpg'),
+                      createResult('lq2gf5', 'Movie:Double Daddy', 0.475, false, './Letterboxd/query2/gme/ft/1046704_5_47.5.jpg')
+                    ]
+                  },
+                  'bge': {
+                    baseline: [
+                      createResult('lq2bb1', 'Movie:Three Many Weddings', 0.439, false, './Letterboxd/query2/bge/base/1028898_1_43.9.jpg'),
+                      createResult('lq2bb2', 'Movie:I\'m In Love With Your Daughter!', 0.437, false, './Letterboxd/query2/bge/base/1279500_2_43.7.jpg'),
+                      createResult('lq2bb3', 'Movie:Our Family Wedding', 0.435, false, './Letterboxd/query2/bge/base/1035248_3_43.5.jpg'),
+                      createResult('lq2bb4', 'Movie:Father of the Bride', 0.433, false, './Letterboxd/query2/bge/base/1003283_4_43.3.jpg'),
+                      createResult('lq2bb5', 'Movie:Maybe I Do', 0.426, false, './Letterboxd/query2/bge/base/1008862_5_42.6.jpg')
+                    ],
+                    ours: [
+                      createResult('lq2bf1', 'Movie:Mamma Mia!', 0.478, true, './Letterboxd/query2/bge/ft/1000208_1_47.8.jpg'),
+                      createResult('lq2bf2', 'Movie:I\'m In Love With Your Daughter!', 0.457, false, './Letterboxd/query2/bge/ft/1279500_2_45.7.jpg'),
+                      createResult('lq2bf3', 'Movie:A Very Merry Daughter of the Bride', 0.455, false, './Letterboxd/query2/bge/ft/1125617_3_45.5.jpg'),
+                      createResult('lq2bf4', 'Movie:Wedding Partner', 0.452, false, './Letterboxd/query2/bge/ft/1137565_4_45.2.jpg'),
+                      createResult('lq2bf5', 'Movie:Daughter of the Bride', 0.423, false, './Letterboxd/query2/bge/ft/1066017_5_42.3.jpg')
+                    ]
+                  }
+                }
+              },
+              {
                 id: 'q1',
                 type: "Text-to-Image",
                 text: "Truman Burbank is the star of The Truman Show, a 24-hour-a-day reality TV show that broadcasts every aspect of his life without his knowledge. His entire life has been an unending soap opera for consumption by the rest of the world. And everyone he knows, including his wife and his best friend is really an actor, paid to be part of his life.",
@@ -270,58 +384,115 @@
             icon: Layout,
             queries: [
               {
-                id: 'q1',
-                type: "",
+                id: 'query1',
+                type: "Text-to-Text&Image",
                 queryImage: "",
-                text: "",
-                desc: "",
+                text: "book about jay gatsby trying to relive the past",
+                desc: "Book:The Great Gatsby",
                 results: {
                   'omni': {
                     baseline: [
-                      createResult('cb1', '', 0.65, false, ''),
-                      createResult('cb2', '', 0.61, false, ''),
-                      createResult('cb3', '', 0.59, false, ''),
-                      createResult('cb4', '', 0.55, false, ''),
-                      createResult('cb5', '', 0.52, false, '')
+                      createResult('gq1ob1', 'Book:The Diary of Moses Jenkins', 0.682, false, './Goodreads/query1/omni/base/25301990_1_68.2.jpg'),
+                      createResult('gq1ob2', 'Book:The Great Gatsby', 0.678, false, './Goodreads/query1/omni/base/17573408_2_67.8.jpg'),
+                      createResult('gq1ob3', 'Book:Foucault\'s Pendulum', 0.676, false, './Goodreads/query1/omni/base/16810416_3_67.6.jpg'),
+                      createResult('gq1ob4', 'Book:Choose Your Delusion', 0.673, false, './Goodreads/query1/omni/base/25250834_4_67.3.jpg'),
+                      createResult('gq1ob5', 'Book:2014 on Goodreads', 0.670, false, './Goodreads/query1/omni/base/24240289_5_67.0.jpg')
                     ],
                     ours: [
-                      createResult('cbo1', '', 0.88, true, ''),
-                      createResult('cbo2', '', 0.85, true, ''),
-                      createResult('cbo3', '', 0.82, true, ''),
-                      createResult('cbo4', '', 0.80, true, ''),
-                      createResult('cbo5', '', 0.78, true, '')
+                      createResult('gq1of1', 'Book:The Great Gatsby', 0.594, false, './Goodreads/query1/omni/ft/17928855_1_59.4.jpg'),
+                      createResult('gq1of2', 'Book:The Great Gatsby', 0.592, false, './Goodreads/query1/omni/ft/17573408_2_59.2.jpg'),
+                      createResult('gq1of3', 'Book:The Great Gatsby', 0.588, true, './Goodreads/query1/omni/ft/14761521_3_58.8.jpg'),
+                      createResult('gq1of4', 'Book:The Great Gatsby', 0.586, false, './Goodreads/query1/omni/ft/8460324_4_58.6.jpg'),
+                      createResult('gq1of5', 'Book:The Great Gatsby', 0.582, false, './Goodreads/query1/omni/ft/9357704_5_58.2.jpg')
                     ]
                   },
                   'gme': {
                     baseline: [
-                      createResult('cl1', '', 0.78, true, ''),
-                      createResult('cl2', '', 0.68, false, ''),
-                      createResult('cl3', '', 0.65, false, ''),
-                      createResult('cl4', '', 0.60, false, ''),
-                      createResult('cl5', '', 0.58, false, '')
+                      createResult('gq1gb1', 'Book:Il grande Gatsby', 0.528, false, './Goodreads/query1/gme/base/36229952_1_52.8.jpg'),
+                      createResult('gq1gb2', 'Book:The Great Gatsby', 0.521, false, './Goodreads/query1/gme/base/16166573_3_52.1.jpg'),
+                      createResult('gq1gb3', 'Book:Velký Gatsby', 0.514, false, './Goodreads/query1/gme/base/20555118_3_51.4.jpg'),
+                      createResult('gq1gb4', 'Book:The Great Gatsby', 0.498, false, './Goodreads/query1/gme/base/17573408_4_49.8.jpg'),
+                      createResult('gq1gb5', 'Book:Foucault\'s Pendulum', 0.490, false, './Goodreads/query1/gme/base/16810416_3_49.0.jpg')
                     ],
                     ours: [
-                      createResult('clo1', '', 0.92, true, ''),
-                      createResult('clo2', '', 0.88, true, ''),
-                      createResult('clo3', '', 0.85, true, ''),
-                      createResult('clo4', '', 0.84, true, ''),
-                      createResult('clo5', '', 0.81, true, '')
+                      createResult('gq1gf1', 'Book:The Great Gatsby', 0.624, false, './Goodreads/query1/gme/ft/17928855_1_62.4.jpg'),
+                      createResult('gq1gf2', 'Book:The Great Gatsby', 0.612, false, './Goodreads/query1/gme/ft/17573408_2_61.2.jpg'),
+                      createResult('gq1gf3', 'Book:The Great Gatsby', 0.590, false, './Goodreads/query1/gme/ft/15706198_3_59.0.jpg'),
+                      createResult('gq1gf4', 'Book:Gatsby le magnifique', 0.585, false, './Goodreads/query1/gme/ft/6611314_4_58.5.jpg'),
+                      createResult('gq1gf5', 'Book:The Great Gatsby', 0.580, true, './Goodreads/query1/gme/ft/14761521_5_58.0.jpg')
                     ]
                   },
                   'bge': {
                     baseline: [
-                      createResult('bp1', '', 0.80, true, ''),
-                      createResult('bp2', '', 0.72, true, ''),
-                      createResult('bp3', '', 0.60, false, ''),
-                      createResult('bp4', '', 0.58, false, ''),
-                      createResult('bp5', '', 0.55, false, '')
+                      createResult('gq1bb1', 'Book:Il grande Gatsby', 0.533, false, './Goodreads/query1/bge/base/17263538_1_53.3.jpg'),
+                      createResult('gq1bb2', 'Book:The Great Gatsby', 0.531, false, './Goodreads/query1/bge/base/16166573_2_53.1.jpg'),
+                      createResult('gq1bb3', 'Book:Il grande Gatsby', 0.528, false, './Goodreads/query1/bge/base/36229952_3_52.8.jpg'),
+                      createResult('gq1bb4', 'Book:Velký Gatsby', 0.524, false, './Goodreads/query1/bge/base/20555118_4_52.4.jpg'),
+                      createResult('gq1bb5', 'Book:Il grande Gatsby', 0.511, false, './Goodreads/query1/bge/base/11313163_5_51.1.jpg')
                     ],
                     ours: [
-                      createResult('bpo1', '', 0.95, true, ''),
-                      createResult('bpo2', '', 0.92, true, ''),
-                      createResult('bpo3', '', 0.89, true, ''),
-                      createResult('bpo4', '', 0.87, true, ''),
-                      createResult('bpo5', '', 0.86, true, '')
+                      createResult('gq1bf1', 'Book:The Great Gatsby', 0.574, false, './Goodreads/query1/bge/ft/29081256_1_57.4.jpg'),
+                      createResult('gq1bf2', 'Book:The Great Gatsby', 0.570, false, './Goodreads/query1/bge/ft/15706198_2_57.0.jpg'),
+                      createResult('gq1bf3', 'Book:The Great Gatsby', 0.568, false, './Goodreads/query1/bge/ft/11375023_3_56.8.jpg'),
+                      createResult('gq1bf4', 'Book:Gatsby le magnifique', 0.565, false, './Goodreads/query1/bge/ft/6611314_4_56.5.jpg'),
+                      createResult('gq1bf5', 'Book:El gran Gatsby', 0.551, false, './Goodreads/query1/bge/ft/623206_5_55.1.jpg')
+                    ]
+                  }
+                }
+              },
+              {
+                id: 'query2',
+                type: "Text-to-Text&Image",
+                queryImage: "",
+                text: "Stephen hawking book on cosmology and time travel",
+                desc: "Book:A Brief History of Time",
+                results: {
+                  'omni': {
+                    baseline: [
+                      createResult('gq2ob1', 'Book:Time Travel and Warp Drives: A Scientific Guide to Shortcuts through Time and Space', 0.692, false, './Goodreads/query2/omni/base/11862075_1_69.2.jpg'),
+                      createResult('gq2ob2', 'Book:Hyperspace', 0.690, false, './Goodreads/query2/omni/base/33426_2_69.0.jpg'),
+                      createResult('gq2ob3', 'Book:A Brief History of Time. From the Big Bang to Black Holes', 0.688, false, './Goodreads/query2/omni/base/8148777_3_68.8.jpg'),
+                      createResult('gq2ob4', 'Book:Relativity and Quantum Physics For Beginners', 0.676, false, './Goodreads/query2/omni/base/6498744_4_67.6.jpg'),
+                      createResult('gq2ob5', 'Book:The Origin Of The Universe', 0.672, false, './Goodreads/query2/omni/base/1404555_5_67.2.jpg')
+                    ],
+                    ours: [
+                      createResult('gq2of1', 'Book:A Brief History of Time', 0.645, false, './Goodreads/query2/omni/ft/32056362_1_64.5.jpg'),
+                      createResult('gq2of2', 'Book:Introducing Stephen Hawking (Introducing', 0.640, false, './Goodreads/query2/omni/ft/6916833_2_64.0.jpg'),
+                      createResult('gq2of3', 'Book:A Brief History of Time', 0.609, false, './Goodreads/query2/omni/ft/16035510_3_60.9.jpg'),
+                      createResult('gq2of4', 'Book:A Brief History of Time. From the Big Bang to Black Holes', 0.577, false, './Goodreads/query2/omni/ft/8148777_4_57.7.jpg'),
+                      createResult('gq2of5', 'Book:Краткая история времени', 0.575, false, './Goodreads/query2/omni/ft/25066904_5_57.5.jpg')
+                    ]
+                  },
+                  'gme': {
+                    baseline: [
+                      createResult('gq2gb1', 'Book:Theory of Everything', 0.606, false, './Goodreads/query2/gme/base/8509300_1_60.6.jpg'),
+                      createResult('gq2gb2', 'Book:A Brief History of Time. From the Big Bang to Black Holes', 0.598, false, './Goodreads/query2/gme/base/8148777_2_59.8.jpg'),
+                      createResult('gq2gb3', 'Book:The Illustrated Theory of Everything', 0.589, false, './Goodreads/query2/gme/base/5495632_3_58.9.jpg'),
+                      createResult('gq2gb4', 'Book:The Theory of Everything: The Origin and Fate of the Universe', 0.576, false, './Goodreads/query2/gme/base/12741584_4_57.6.jpg'),
+                      createResult('gq2gb5', 'Book:Hyperspace', 0.570, false, './Goodreads/query2/gme/base/33426_5_57.0.jpg')
+                    ],
+                    ours: [
+                      createResult('gq2gf1', 'Book:Theory of Everything', 0.612, false, './Goodreads/query2/gme/ft/8509300_1_61.2.jpg'),
+                      createResult('gq2gf2', 'Book:A Brief History of Time', 0.608, false, './Goodreads/query2/gme/ft/17264257_2_60.8.jpg'),
+                      createResult('gq2gf3', 'Book:Introducing Stephen Hawking (Introducing', 0.640, false, './Goodreads/query2/gme/ft/6916833_3_64.0.jpg'),
+                      createResult('gq2gf4', 'Book:A Brief History of Time. From the Big Bang to Black Holes', 0.617, false, './Goodreads/query2/gme/ft/8148777_4_61.7.jpg'),
+                      createResult('gq2gf5', 'Book:The Illustrated Theory of Everything', 0.597, false, './Goodreads/query2/gme/ft/5495632_5_59.7.jpg')
+                    ]
+                  },
+                  'bge': {
+                    baseline: [
+                      createResult('gq2bb1', 'Book:A Brief History of Time', 0.554, false, './Goodreads/query2/bge/base/17264257_1_55.4.jpg'),
+                      createResult('gq2bb2', 'Book:lustrated Theory of Everything', 0.551, false, './Goodreads/query2/bge/base/5495632_2_55.1.jpg'),
+                      createResult('gq2bb3', 'Book:Dal Big Bang ai buchi neri', 0.549, false, './Goodreads/query2/bge/base/435854_3_54.9.jpg'),
+                      createResult('gq2bb4', 'Book:Theory of Everything', 0.546, false, './Goodreads/query2/bge/base/8509300_4_54.6.jpg'),
+                      createResult('gq2bb5', 'Book:Dal big bang ai buchi neri', 0.535, false, './Goodreads/query2/bge/base/13502646_5_53.5.jpg')
+                    ],
+                    ours: [
+                      createResult('gq2bf1', 'Book:A Brief History of Time', 0.563, false, './Goodreads/query2/bge/ft/17264257_1_56.3.jpg'),
+                      createResult('gq2bf2', 'Book:lustrated Theory of Everything', 0.560, false, './Goodreads/query2/bge/ft/5495632_2_56.0.jpg'),
+                      createResult('gq2bf3', 'Book:The Grand Design', 0.550, false, './Goodreads/query2/bge/ft/11098655_3_55.0.jpg'),
+                      createResult('gq2bf4', 'Book:The Theory of Everything: The Origin and Fate of the Universe', 0.546, false, './Goodreads/query2/bge/ft/12741584_4_54.6.jpg'),
+                      createResult('gq2bf5', 'Book:A Briefer History of Time', 0.541, false, './Goodreads/query2/bge/ft/4755164_5_54.1.jpg')
                     ]
                   }
                 }
@@ -334,6 +505,120 @@
             icon: Cpu,
             queries: [
             {
+                id: 'query1',
+                type: "Text-to-Text&Image",
+                text: "How to build a city for allies in terraria",
+                desc: "Game:Terraria",
+                queryImage: "", 
+                results: {
+                  'omni': {
+                    baseline: [
+                      createResult('sq1ob1', 'Game:Animal Farmland', 0.587, false, './Steam/query1/omni/base/3111710_1_58.7.jpg'),
+                      createResult('sq1ob2', 'Game:Terraria', 0.574, true, './Steam/query1/omni/base/105600_2_57.4.jpg'),
+                      createResult('sq1ob3', 'Game:MyTavern', 0.564, false, './Steam/query1/omni/base/2793040_3_56.4.jpg'),
+                      createResult('sq1ob4', 'Game:Beyond Terra', 0.541, false, './Steam/query1/omni/base/2887900_4_54.1.jpg'),
+                      createResult('sq1ob5', 'Game:Stonehearth', 0.505, false, './Steam/query1/omni/base/253250_5_50.5.jpg')
+                    ],
+                    ours: [
+                      createResult('sq1of1', 'Game:Terraria', 0.628, true, './Steam/query1/omni/ft/105600_1_62.8.jpg'),
+                      createResult('sq1of2', 'Game:荒凉城市', 0.613, false, './Steam/query1/omni/ft/1112350_2_61.3.jpg'),
+                      createResult('sq1of3', 'Game:WorldQuest', 0.603, false, './Steam/query1/omni/ft/852500_3_60.3.jpg'),
+                      createResult('sq1of4', 'Game:The Settlers: New Allies', 0.597, false, './Steam/query1/omni/ft/2750080_4_59.7.jpg'),
+                      createResult('sq1of5', 'Game:Build A City Block', 0.586, false, './Steam/query1/omni/ft/2529190_5_58.6.jpg')
+                    ]
+                  },
+                  'gme': {
+                    baseline: [
+                      createResult('sq1gb1', 'Game:Space City - Build Your Empire', 0.529, false, './Steam/query1/gme/base/1963630_1_52.9.jpg'),
+                      createResult('sq1gb2', 'Game:simpliCity', 0.528, false, './Steam/query1/gme/base/2381230_2_52.8.jpg'),
+                      createResult('sq1gb3', 'Game:WorldQuest', 0.527, false, './Steam/query1/gme/base/852500_3_52.7.jpg'),
+                      createResult('sq1gb4', 'Game:Craft city', 0.521, false, './Steam/query1/gme/base/1308060_4_52.1.jpg'),
+                      createResult('sq1gb5', 'Game:Cities Domination', 0.521, false, './Steam/query1/gme/base/3166610_5_52.1.jpg')
+                    ],
+                    ours: [
+                      createResult('sq1gf1', 'Game:Terraria', 0.636, true, './Steam/query1/gme/ft/105600_1_63.6.jpg'),
+                      createResult('sq1gf2', 'Game:Build A City Block', 0.621, false, './Steam/query1/gme/ft/2529190_2_62.1.jpg'),
+                      createResult('sq1gf3', 'Game:WorldQuest', 0.603, false, './Steam/query1/gme/ft/852500_3_60.3.jpg'),
+                      createResult('sq1gf4', 'Game:Matches', 0.558, false, './Steam/query1/gme/ft/1244800_4_55.8.2.jpg'),
+                      createResult('sq1gf5', 'Game:Illyriad - Grand Strategy MMO', 0.550, false, './Steam/query1/gme/ft/559310_5_55.0.jpg')
+                    ]
+                  },
+                  'bge': {
+                    baseline: [
+                      createResult('sq1bb1', 'Game:TERROVOX', 0.422, false, './Steam/query1/bge/base/1950240_1_42.2.jpg'),
+                      createResult('sq1bb2', 'Game:Matches', 0.404, false, './Steam/query1/bge/base/1244800_2_40.4.jpg'),
+                      createResult('sq1bb3', 'Game:Forager', 0.398, false, './Steam/query1/bge/base/751780_3_39.8.jpg'),
+                      createResult('sq1bb4', 'Game:Cracked', 0.398, false, './Steam/query1/bge/base/1135740_4_39.8.jpg'),
+                      createResult('sq1bb5', 'Game:Go-Go Town!', 0.392, false, './Steam/query1/bge/base/2195120_5_39.2.jpg')
+                    ],
+                    ours: [
+                      createResult('sq1bf1', 'Game:Matches', 0.462, false, './Steam/query1/bge/ft/1244800_1_46.2.jpg'),
+                      createResult('sq1bf2', 'Game:Illyriad - Grand Strategy MMO', 0.460, false, './Steam/query1/bge/ft/559310_2_46.0.jpg'),
+                      createResult('sq1bf3', 'Game:Medieval Knight', 0.451, false, './Steam/query1/bge/ft/1998670_3_45.1.jpg'),
+                      createResult('sq1bf4', 'Game:World Of Conquerors', 0.447, false, './Steam/query1/bge/ft/1057740_4_44.7.jpg'),
+                      createResult('sq1bf5', 'Game:Terraria', 0.443, true, './Steam/query1/bge/ft/105600_5_44.3.jpg')
+                    ]
+                  }
+                }
+              },
+              {
+                id: 'query2',
+                type: "Text-to-Text&Image",
+                text: "Red dead redemption 2 ultimate edition vs standard differences",
+                desc: "Game:Red Dead Redemption 2",
+                queryImage: "", 
+                results: {
+                  'omni': {
+                    baseline: [
+                      createResult('sq2ob1', 'Game:Red Dead Redemption 2', 0.598, true, './Steam/query2/omni/base/1174180_1_59.8.jpg'),
+                      createResult('sq2ob2', 'Game:Cyberpunk 2077', 0.587, false, './Steam/query2/omni/base/1091500_2_58.7.jpg'),
+                      createResult('sq2ob3', 'Game:Forza Horizon 5', 0.582, false, './Steam/query2/omni/base/1551360_3_58.2.jpg'),
+                      createResult('sq2ob4', 'Game:Surviving Mars', 0.575, false, './Steam/query2/omni/base/464920_4_57.5.jpg'),
+                      createResult('sq2ob5', 'Game:Control Ultimate Edition', 0.554, false, './Steam/query2/omni/base/870780_5_55.4.jpg')
+                    ],
+                    ours: [
+                      createResult('sq2of1', 'Game:Red Dead Redemption 2', 0.621, true, './Steam/query2/omni/ft/1174180_1_62.1.jpg'),
+                      createResult('sq2of2', 'Game:Red Dead Redemption', 0.610, false, './Steam/query2/omni/ft/2668510_1_61.0.jpg'),
+                      createResult('sq2of3', 'Game:Dear RED - Extended', 0.605, false, './Steam/query2/omni/ft/453850_3_60.5.jpg'),
+                      createResult('sq2of4', 'Game:Cyberpunk 2077', 0.588, false, './Steam/query2/omni/ft/1091500_4_58.8.jpg'),
+                      createResult('sq2of5', 'Game:Deep Rock Galactic', 0.566, false, './Steam/query2/omni/ft/548430_5_56.6.jpg')
+                    ]
+                  },
+                  'gme': {
+                    baseline: [
+                      createResult('sq2gb1', 'Game:Red Dead Redemption 2', 0.682, true, './Steam/query2/gme/base/1174180_1_68.2.jpg'),
+                      createResult('sq2gb2', 'Game:Red Dead Redemptio', 0.561, false, './Steam/query2/gme/base/2668510_2_56.1.jpg'),
+                      createResult('sq2gb3', 'Game:Red Dead Online', 0.545, false, './Steam/query2/gme/base/1404210_3_54.5.jpg'),
+                      createResult('sq2gb4', 'Game:Darksiders II Deathinitive Edition', 0.532, false, './Steam/query2/gme/base/388410_4_53.2.jpg'),
+                      createResult('sq2gb5', 'Game:Cyberpunk 2077', 0.521, false, './Steam/query2/gme/base/1091500_5_52.1.jpg')
+                    ],
+                    ours: [
+                      createResult('sq2gf1', 'Game:Red Dead Redemption 2', 0.642, true, './Steam/query2/gme/ft/1174180_1_64.2.jpg'),
+                      createResult('sq2gf2', 'Game:Red Dead Redemption', 0.629, false, './Steam/query2/gme/ft/2668510_2_62.9.jpg'),
+                      createResult('sq2gf3', 'Game:Red Dead Online', 0.614, false, './Steam/query2/gme/ft/1404210_3_61.4.jpg'),
+                      createResult('sq2gf4', 'Game:TEKKEN 8', 0.574, false, './Steam/query2/gme/ft/1778820_4_57.4.9.jpg'),
+                      createResult('sq2gf5', 'Game:Deep Rock Galactic', 0.566, false, './Steam/query2/gme/ft/548430_5_56.6.jpg')
+                    ]
+                  },
+                  'bge': {
+                    baseline: [
+                      createResult('sq2bb1', 'Game:Red Dead Redemption 2', 0.549, true, './Steam/query2/bge/base/1174180_1_54.9.jpg'),
+                      createResult('sq2bb2', 'Game', 0.479, false, './Steam/query2/bge/base/2668510_2_47.9.jpg'),
+                      createResult('sq2bb3', 'Game', 0.467, false, './Steam/query2/bge/base/1404210_3_46.7.jpg'),
+                      createResult('sq2bb4', 'Game', 0.442, false, './Steam/query2/bge/base/2369390_4_44.2.jpg'),
+                      createResult('sq2bb5', 'Game', 0.419, false, './Steam/query2/bge/base/1778820_5_41.9.jpg')
+                    ],
+                    ours: [
+                      createResult('sq2bf1', 'Game:Red Dead Redemption 2', 0.487, true, './Steam/query2/bge/ft/1174180_1_48.7.jpg'),
+                      createResult('sq2bf2', 'Game:Red Dead Redemption', 0.479, false, './Steam/query2/bge/ft/2668510_2_47.9.jpg'),
+                      createResult('sq2bf3', 'Game:Red Dead Online', 0.474, false, './Steam/query2/bge/ft/1404210_3_47.4.jpg'),
+                      createResult('sq2bf4', 'Game:Control Ultimate Edition', 0.466, false, './Steam/query2/bge/ft/870780_4_46,6.jpg'),
+                      createResult('sq2bf5', 'Game:Assassin\'s Creed Odyssey', 0.460, false, './Steam/query2/bge/ft/812140_5_46.0.jpg')
+                    ]
+                  }
+                }
+              },
+              {
                 id: 'q1',
                 type: "Text-to-Image",
                 text: "When a young street hustler, a retired bank robber and a terrifying psychopath find themselves entangled with some of the most frightening and deranged elements of the criminal underworld, the U.S. government and the entertainment industry, they must pull off a series of dangerous heists to survive in a ruthless city in which they can trust nobody, least of all each other. Grand Theft Auto V for PC offers players the option to explore the award-winning world of Los Santos and Blaine County in resolutions of up to 4k and beyond, as well as the chance to experience the game running at 60 frames per second. The game offers players a huge range of PC-specific customization options, including over 25 separate configurable settings for texture quality, shaders, tessellation, anti-aliasing and more, as well as support and extensive customization for mouse and keyboard controls. Additional options include a population density slider to control car and pedestrian traffic, as well as dual and triple monitor support, 3D compatibility, and plug-and-play controller support. Grand Theft Auto V for PC also includes Grand Theft Auto Online, with support for 30 players and two spectators. Grand Theft Auto Online for PC will include all existing gameplay upgrades and Rockstar-created content released since the launch of Grand Theft Auto Online, including Heists and Adversary modes. The PC version of Grand Theft Auto V and Grand Theft Auto Online features First Person Mode, giving players the chance to explore the incredibly detailed world of Los Santos and Blaine County in an entirely new way. Grand Theft Auto V for PC also brings the debut of the Rockstar Editor, a powerful suite of creative tools to quickly and easily capture, edit and share game footage from within Grand Theft Auto V and Grand Theft Auto Online. The Rockstar Editor’s Director Mode allows players the ability to stage their own scenes using prominent story characters, pedestrians, and even animals to bring their vision to life. Along with advanced camera manipulation and editing effects including fast and slow motion, and an array of camera filters, players can add their own music using songs from GTAV radio stations, or dynamically control the intensity of the game’s score. Completed videos can be uploaded directly from the Rockstar Editor to YouTube and the Rockstar Games Social Club for easy sharing. Soundtrack artists The Alchemist and Oh No return as hosts of the new radio station, The Lab FM. The station features new and exclusive music from the production duo based on and inspired by the game’s original soundtrack. Collaborating guest artists include Earl Sweatshirt, Freddie Gibbs, Little Dragon, Killer Mike, Sam Herring from Future Islands, and more. Players can also discover Los Santos and Blaine County while enjoying their own music through Self Radio, a new radio station that will host player-created custom soundtracks.",
@@ -462,10 +747,10 @@
                     ],
                     ours: [
                       createResult('cbo1', 'Game:It Takes Two Friend\'s Pass', 0.525, false, './cases/Steam/case3/omni/ft/2995920.jpg'),
-                      createResult('cbo2', 'Game:It Takes Two', 0.517, true, './cases/Steam/case3/omni/ft/1426210.jpg'),
-                      createResult('cbo3', 'Game:Tasks for Two', 0.498, false, './cases/Steam/case3/omni/ft/3393690.jpg'),
-                      createResult('cbo4', 'Game:Five Nights: No Escape', 0.483, false, './cases/Steam/case3/omni/ft/2374030.jpg'),
-                      createResult('cbo5', 'Game:Operation: Tango - Friend Pass', 0.475, false, './cases/Steam/case3/omni/ft/1377150.jpg')
+                      createResult('cbo2', 'Game:It Takes Two', 0.517, true, './cases/Steam/case3/omni/base/1426210.jpg'),
+                      createResult('cbo3', 'Game:Tasks for Two', 0.498, false, './cases/Steam/case3/omni/base/3393690.jpg'),
+                      createResult('cbo4', 'Game:Five Nights: No Escape', 0.483, false, './cases/Steam/case3/omni/base/2374030.jpg'),
+                      createResult('cbo5', 'Game:Operation: Tango - Friend Pass', 0.475, false, './cases/Steam/case3/omni/base/1377150.jpg')
                     ]
                   },
                   'gme': {
@@ -511,7 +796,7 @@
         const ExpandableText = ({ text }) => {
           const [isExpanded, setIsExpanded] = useState(false);
           // 简单的判断：如果文字超过200个字符，就认为它是长文本
-          const isLongText = text.length > 300;
+          const isLongText = text.length > 200;
 
           if (!isLongText) {
             return <h3 className="text-lg font-medium text-slate-900 leading-tight">{text}</h3>;
@@ -656,7 +941,7 @@
                       <Database size={18} />
                     </div>
                     <div>
-                      <h1 className="text-lg font-bold tracking-tight text-slate-900">UDA for MLLM-based Embedding Model</h1>
+                      <h1 className="text-lg font-bold tracking-tight text-slate-900">MultiModal Domain Adapt</h1>
                       <p className="text-[10px] text-slate-500 font-medium uppercase tracking-wider">Retrieval Case Studies</p> 
                     </div>
                   </div>
@@ -810,7 +1095,7 @@
                             </div>
                             <div>
                               <h3 className="text-sm font-bold text-slate-800">Original {activeBaselineModel.name} (Top-5)</h3>
-                              <p className="text-[10px] text-slate-500">Pre-trained Model</p>
+                              <p className="text-[10px] text-slate-500">Pre-trained weights (Zero-shot)</p>
                             </div>
                           </div>
                           <div className="px-2 py-1 bg-slate-100 rounded text-xs font-mono text-slate-500">
